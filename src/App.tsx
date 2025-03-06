@@ -9,7 +9,7 @@ function App() {
   const fetchProtectedData = async () => {
     try {
       const token = await getAccessTokenSilently();
-      const response = await fetch("http://localhost:8000/", {
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
