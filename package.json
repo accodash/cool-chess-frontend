@@ -27,8 +27,24 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.27.0",
     "vite": "^6.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "**/*.{json,md,css,scss}": [
+      "prettier --write"
+    ]
   }
 }
