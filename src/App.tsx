@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from 'react';
+import Button from './components/Button/Button';
 
 function App() {
   const { loginWithRedirect, user, logout, getAccessTokenSilently } = useAuth0();
@@ -33,6 +34,7 @@ function App() {
       <button onClick={fetchProtectedData} disabled={!user}>
         Fetch Protected Data
       </button>
+      <Button text='Hello' />
       {data && <pre>{JSON.stringify(data)}</pre>}
     </>
   );
