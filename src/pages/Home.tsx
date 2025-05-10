@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import HomeHero from '../components/home/HomeHero';
 import FeaturesSection from '../components/home/FeaturesSection';
-import CTASection from '../components/home/CTASection';
+import CTASection from '../components/misc/CTASection';
 
 interface HomeProps {
     loggedIn: boolean;
@@ -13,7 +13,6 @@ const Home: React.FC<HomeProps> = ({ loggedIn, onLogin }) => {
         <Box>
             <HomeHero loggedIn={loggedIn} onLogin={onLogin} />
             <FeaturesSection />
-            <CTASection loggedIn={loggedIn} onLogin={onLogin} />
         </Box>
     );
 };

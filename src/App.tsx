@@ -6,6 +6,7 @@ import NavigationBar from './components/misc/NavigationBar';
 import Home from './pages/Home';
 import Footer from './components/misc/Footer';
 import Ranking from './pages/Ranking';
+import CTASection from './components/misc/CTASection';
 
 function App() {
     const { loginWithRedirect, user, logout, getAccessTokenSilently } =
@@ -46,9 +47,18 @@ function App() {
                 ></NavigationBar>
                 <Box flex={1}>
                     <Routes>
-                        <Route path='/' element={<Home loggedIn={!!user} onLogin={loginWithRedirect} />} />
+                        <Route
+                            path='/'
+                            element={
+                                <Home
+                                    loggedIn={!!user}
+                                    onLogin={loginWithRedirect}
+                                />
+                            }
+                        />
                         <Route path='/ranking' element={<Ranking />} />
                     </Routes>
+                    {!user && <CTASection onLogin={loginWithRedirect} />}
                     <Footer />
                 </Box>
             </Box>
