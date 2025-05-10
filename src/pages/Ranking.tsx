@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ModeSelector from '../components/ranking/ModeSelector';
 import RankingList from '../components/ranking/RankingList';
-import PaginationControls from '../components/ranking/PaginationControls';
+import PaginationControls from '../components/PaginationControls';
 
 interface User {
     uuid: string;
