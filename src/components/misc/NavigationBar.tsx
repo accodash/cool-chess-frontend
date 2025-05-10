@@ -17,12 +17,13 @@ import {
     MilitaryTech,
     Person,
 } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const menuItems = [
-    { icon: <SportsEsports />, label: 'Play' },
-    { icon: <Article />, label: 'History' },
-    { icon: <MilitaryTech />, label: 'Ranking' },
-    { icon: <EmojiPeople />, label: 'Social' },
+    { icon: <SportsEsports />, label: 'Play', link: '/play' },
+    { icon: <Article />, label: 'History', link: '/history' },
+    { icon: <MilitaryTech />, label: 'Ranking', link: '/ranking' },
+    { icon: <EmojiPeople />, label: 'Social', link: '/social' },
 ];
 
 interface NavigationBarProps {
@@ -55,7 +56,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 alignItems='stretch'
             >
                 <List sx={{ flex: 1 }}>
-                    <ListItemButton>
+                    <ListItemButton component={Link} to='/'>
                         <ListItemText
                             primary={
                                 <Typography variant='h5' align='center'>
@@ -75,6 +76,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                                     flexDirection: 'column',
                                     padding: '12px 0',
                                 }}
+                                component={Link}
+                                to={item.link}
                             >
                                 <ListItemIcon sx={{ minWidth: 'unset', pt: 1 }}>
                                     {item.icon}
@@ -93,7 +96,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 <Box width='100%' px={1} py={1}>
                     {loggedIn && (
                         <>
-                            <Button fullWidth sx={{ mb: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
+                            <Button
+                                fullWidth
+                                sx={{
+                                    mb: 1,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: 1,
+                                }}
+                            >
                                 <Icon sx={{ minWidth: 'unset' }}>
                                     <Person />
                                 </Icon>

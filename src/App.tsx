@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavigationBar from './components/misc/NavigationBar';
 import Home from './pages/Home';
 import Footer from './components/misc/Footer';
+import Ranking from './pages/Ranking';
 
 function App() {
     const { loginWithRedirect, user, logout, getAccessTokenSilently } =
@@ -46,6 +47,7 @@ function App() {
                 <Box flex={1}>
                     <Routes>
                         <Route path='/' element={<Home loggedIn={!!user} onLogin={loginWithRedirect} />} />
+                        <Route path='/ranking' element={<Ranking />} />
                     </Routes>
                     <Footer />
                 </Box>
