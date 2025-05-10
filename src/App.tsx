@@ -1,10 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState } from 'react';
-import Button from './components/Button/Button';
+import { useEffect } from 'react';
+import { Box } from '@mui/material';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 
 function App() {
   const { loginWithRedirect, user, logout, getAccessTokenSilently } = useAuth0();
-  const [data, setData] = useState(null);
 
   const fetchProtectedData = async () => {
     try {
@@ -21,22 +21,18 @@ function App() {
       }
 
       const responseData = await response.json();
-      setData(responseData);
+      console.log(responseData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
+  useEffect(() => { fetchProtectedData() }, []);
+
   return (
-    <>
-      <button onClick={() => loginWithRedirect()}>Log In</button>
-      <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</button>
-      <button onClick={fetchProtectedData} disabled={!user}>
-        Fetch Protected Data
-      </button>
-      <Button text='Hello' />
-      {data && <pre>{JSON.stringify(data)}</pre>}
-    </>
+      <Box display='flex'>
+        <NavigationBar onLogin={loginWithRedirect} onLogout={logout} loggedIn={!!user}></NavigationBar>
+      </Box>
   );
 }
 
