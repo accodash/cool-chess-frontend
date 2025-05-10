@@ -9,6 +9,7 @@ import Ranking from './pages/Ranking';
 import CTASection from './components/misc/CTASection';
 import Lobby from './pages/Lobby';
 import History from './pages/History';
+import UserList from './pages/UserList';
 
 function App() {
     const { loginWithRedirect, user, logout, getAccessTokenSilently } =
@@ -67,6 +68,7 @@ function App() {
                             element={<History loggedIn={!!user} />}
                         />
                         <Route path='/ranking' element={<Ranking />} />
+                        <Route path='/social' element={<UserList />} />
                     </Routes>
                     {!user && <CTASection onLogin={loginWithRedirect} />}
                     <Footer />

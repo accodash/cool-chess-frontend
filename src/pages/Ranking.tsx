@@ -57,7 +57,7 @@ export default function Ranking() {
     };
 
     return (
-        <Box sx={{ px: 4, py: 6 }}>
+        <Box px={4} py={6}>
             <Typography variant='h4' gutterBottom>
                 {mode.charAt(0).toUpperCase() + mode.slice(1)} Ranking
             </Typography>
