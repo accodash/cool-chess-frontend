@@ -4,17 +4,17 @@ import { SportsEsports, People, Leaderboard } from '@mui/icons-material';
 const features = [
     {
         icon: <SportsEsports fontSize='large' />,
-        title: 'Play Instantly',
+        title: 'Play instantly',
         desc: 'Jump into a game with no downloads required.',
     },
     {
         icon: <People fontSize='large' />,
-        title: 'Play With Friends',
+        title: 'Play with friends',
         desc: 'Invite and play casual or rated matches with your friends.',
     },
     {
         icon: <Leaderboard fontSize='large' />,
-        title: 'Track Your Progress',
+        title: 'Track your progress',
         desc: 'Elo ratings, leaderboards, and game history.',
     },
 ];
@@ -23,7 +23,7 @@ export default function FeaturesSection() {
     return (
         <Box sx={{ py: 6, px: 4 }}>
             <Typography variant='h4' textAlign='center' mb={4}>
-                Why Choose Us?
+                Why choose us?
             </Typography>
             <Grid container spacing={4} justifyContent='center'>
                 {features.map((feat, idx) => (

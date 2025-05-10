@@ -1,14 +1,21 @@
 import { Box } from '@mui/material';
-import HomeHero from '../components/HomeHero';
-import FeaturesSection from '../components/FeaturesSection';
-import CTASection from '../components/CTASection';
+import HomeHero from '../components/home/HomeHero';
+import FeaturesSection from '../components/home/FeaturesSection';
+import CTASection from '../components/home/CTASection';
 
-export default function Home() {
-  return (
-    <Box>
-      <HomeHero />
-      <FeaturesSection />
-      <CTASection />
-    </Box>
-  );
+interface HomeProps {
+    loggedIn: boolean;
+    onLogin: () => void;
 }
+
+const Home: React.FC<HomeProps> = ({ loggedIn, onLogin }) => {
+    return (
+        <Box>
+            <HomeHero loggedIn={loggedIn} onLogin={onLogin} />
+            <FeaturesSection />
+            <CTASection loggedIn={loggedIn} onLogin={onLogin} />
+        </Box>
+    );
+};
+
+export default Home;
