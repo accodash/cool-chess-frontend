@@ -2,8 +2,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NavigationBar from './components/NavigationBar';
+import NavigationBar from './components/misc/NavigationBar';
 import Home from './pages/Home';
+import Footer from './components/misc/Footer';
 
 function App() {
     const { loginWithRedirect, user, logout, getAccessTokenSilently } =
@@ -44,8 +45,9 @@ function App() {
                 ></NavigationBar>
                 <Box flex={1}>
                     <Routes>
-                        <Route path='/' element={<Home />} />
+                        <Route path='/' element={<Home loggedIn={!!user} onLogin={loginWithRedirect} />} />
                     </Routes>
+                    <Footer />
                 </Box>
             </Box>
         </BrowserRouter>
