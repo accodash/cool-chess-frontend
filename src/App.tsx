@@ -12,8 +12,7 @@ import History from './pages/History';
 import UserList from './pages/UserList';
 
 function App() {
-    const { loginWithRedirect, user, logout, getAccessTokenSilently } =
-        useAuth0();
+    const { loginWithRedirect, user, logout, getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
 
     const fetchProtectedData = async () => {
         try {
@@ -38,37 +37,19 @@ function App() {
 
     useEffect(() => {
         fetchProtectedData();
-    }, []);
+    }, [isLoading, isAuthenticated]);
 
     return (
         <BrowserRouter>
-            <Box display='flex'>
-                <NavigationBar
-                    onLogin={loginWithRedirect}
-                    onLogout={logout}
-                    loggedIn={!!user}
-                ></NavigationBar>
+            <Box display="flex">
+                <NavigationBar onLogin={loginWithRedirect} onLogout={logout} loggedIn={!!user}></NavigationBar>
                 <Box flex={1}>
                     <Routes>
-                        <Route
-                            path='/'
-                            element={
-                                <Home
-                                    loggedIn={!!user}
-                                    onLogin={loginWithRedirect}
-                                />
-                            }
-                        />
-                        <Route
-                            path='/play'
-                            element={<Lobby loggedIn={!!user} />}
-                        />
-                        <Route
-                            path='/history'
-                            element={<History loggedIn={!!user} />}
-                        />
-                        <Route path='/ranking' element={<Ranking />} />
-                        <Route path='/social' element={<UserList />} />
+                        <Route path="/" element={<Home loggedIn={!!user} onLogin={loginWithRedirect} />} />
+                        <Route path="/play" element={<Lobby loggedIn={!!user} />} />
+                        <Route path="/history" element={<History loggedIn={!!user} />} />
+                        <Route path="/ranking" element={<Ranking />} />
+                        <Route path="/social" element={<UserList />} />
                     </Routes>
                     {!user && <CTASection onLogin={loginWithRedirect} />}
                     <Footer />
