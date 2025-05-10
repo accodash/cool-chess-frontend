@@ -9,7 +9,7 @@ export default function Footer() {
         backgroundColor: '#121212',
         color: 'white',
         py: 4,
-        px: 2,
+        px: 4,
         mt: 'auto',
       }}
     >
