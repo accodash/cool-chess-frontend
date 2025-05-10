@@ -1,2 +1,14 @@
-const Home = () => <h1>Home Page</h1>;
-export default Home;
+import { Box } from '@mui/material';
+import HomeHero from '../components/HomeHero';
+import FeaturesSection from '../components/FeaturesSection';
+import CTASection from '../components/CTASection';
+
+export default function Home() {
+  return (
+    <Box>
+      <HomeHero />
+      <FeaturesSection />
+      <CTASection />
+    </Box>
+  );
+}
