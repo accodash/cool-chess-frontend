@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Footer from './components/misc/Footer';
 import Ranking from './pages/Ranking';
 import CTASection from './components/misc/CTASection';
+import Lobby from './pages/Lobby';
+import History from './pages/History';
 
 function App() {
     const { loginWithRedirect, user, logout, getAccessTokenSilently } =
@@ -55,6 +57,14 @@ function App() {
                                     onLogin={loginWithRedirect}
                                 />
                             }
+                        />
+                        <Route
+                            path='/play'
+                            element={<Lobby loggedIn={!!user} />}
+                        />
+                        <Route
+                            path='/history'
+                            element={<History loggedIn={!!user} />}
                         />
                         <Route path='/ranking' element={<Ranking />} />
                     </Routes>
