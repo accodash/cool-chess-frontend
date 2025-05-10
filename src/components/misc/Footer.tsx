@@ -19,12 +19,10 @@ export default function Footer() {
         alignItems="center"
         spacing={2}
       >
-        {/* Left side */}
         <Typography variant="body2" color="gray">
           © {new Date().getFullYear()} Cool Chess. All rights reserved.
         </Typography>
 
-        {/* Right side (social links) */}
         <Stack direction="row" spacing={1}>
           <IconButton
             component={Link}
