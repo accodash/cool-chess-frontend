@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import HomeHero from '../components/home/HomeHero';
 import FeaturesSection from '../components/home/FeaturesSection';
-import CTASection from '../components/misc/CTASection';
 
 interface HomeProps {
     loggedIn: boolean;
