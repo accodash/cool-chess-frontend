@@ -1,12 +1,9 @@
-@forward 'variables';
-@use 'variables' as *;
-
 * {
     box-sizing: border-box;
 }
 
 body {
-    background-color: $color-background;
-    color: $color-on-background;
+    background-color: #101010;
+    color: #F0F0F0;
     margin: 0;
 }
