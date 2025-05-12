@@ -1,61 +1,32 @@
-import {
-    Box,
-    Stack,
-    Typography,
-    CircularProgress,
-} from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Box, Stack, Typography, CircularProgress } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import UserCard from '../components/social/UserCard';
 import UserListControls from '../components/social/UserListControls';
 import PaginationControls from '../components/PaginationControls';
-
-interface User {
-    uuid: string;
-    username: string;
-    createdAt: string;
-    imageUrl: string | null;
-    followersCount: number;
-}
+import { useUsers } from '../hooks/useUsers';
 
 const LIMIT = 50;
 
 export default function UserList() {
     const [params, setParams] = useSearchParams();
-    const [users, setUsers] = useState<User[]>([]);
-    const [hasNextPage, setHasNextPage] = useState(false);
-    const [loading, setLoading] = useState(true);
 
     const page = parseInt(params.get('page') || '1', 10);
     const sortBy = params.get('sortBy') || 'createdAt';
     const order = params.get('order') || 'DESC';
     const search = params.get('search') || '';
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            const offset = (page - 1) * LIMIT;
-            const query = new URLSearchParams({
-                limit: (LIMIT + 1).toString(),
-                offset: offset.toString(),
-                sortBy,
-                order,
-            });
-            const res = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}user?${query}`
-            );
-            const result = await res.json();
-            const filtered = search
-                ? result.filter((u: User) =>
-                      u.username.toLowerCase().includes(search.toLowerCase())
-                  )
-                : result;
-            setHasNextPage(filtered.length > LIMIT);
-            setUsers(filtered.slice(0, LIMIT));
-            setLoading(false);
-        };
-        fetchData();
-    }, [params]);
+    const offset = (page - 1) * LIMIT;
+
+    const { data: rawUsers = [], isLoading } = useUsers({
+        offset,
+        limit: LIMIT + 1,
+        sortBy,
+        order,
+        search,
+    });
+
+    const users = rawUsers.slice(0, LIMIT);
+    const hasNextPage = rawUsers.length > LIMIT;
 
     const handleSearchChange = (val: string) => {
         setParams((prev) => {
@@ -86,7 +57,7 @@ export default function UserList() {
 
     return (
         <Box px={4} py={6}>
-            <Typography variant='h4' mb={2}>
+            <Typography variant="h4" mb={2}>
                 User List
             </Typography>
 
@@ -98,8 +69,8 @@ export default function UserList() {
                 onSortChange={handleSortChange}
             />
 
-            {loading ? (
-                <Box textAlign='center' mt={5}>
+            {isLoading ? (
+                <Box textAlign="center" mt={5}>
                     <CircularProgress />
                 </Box>
             ) : (
@@ -117,11 +88,7 @@ export default function UserList() {
                 </Stack>
             )}
 
-            <PaginationControls
-                page={page}
-                hasNext={hasNextPage}
-                onChange={handlePageChange}
-            />
+            <PaginationControls page={page} hasNext={hasNextPage} onChange={handlePageChange} />
         </Box>
     );
 }
