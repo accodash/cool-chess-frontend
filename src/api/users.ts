@@ -8,7 +8,6 @@ export interface User {
     imageUrl: string | null;
     followersCount: number;
     ratings?: Rating[];
-    // We have to think about what we want to return here on the BE
     followed_users?: string[];
     followers?: string[];
 }
