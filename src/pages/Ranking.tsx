@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import ModeSelector from '../components/ranking/ModeSelector';
 import RankingList from '../components/ranking/RankingList';
 import PaginationControls from '../components/PaginationControls';
+import PageHeader from '../components/misc/PageHeader';
 import { useRanking } from '../hooks/useRanking';
 
 const LIMIT = 50;
@@ -28,9 +29,7 @@ export default function Ranking() {
 
     return (
         <Box px={4} py={6}>
-            <Typography variant="h4" gutterBottom>
-                {mode.charAt(0).toUpperCase() + mode.slice(1)} Ranking
-            </Typography>
+            <PageHeader title={`${mode.charAt(0).toUpperCase() + mode.slice(1)} Ranking`} />
 
             <ModeSelector selectedMode={mode} onSelect={handleModeChange} />
 

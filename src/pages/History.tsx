@@ -1,5 +1,6 @@
 import { Typography, Box } from '@mui/material';
 import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
+import PageHeader from '../components/misc/PageHeader';
 
 interface HistoryProps {
     loggedIn: boolean;
@@ -8,9 +9,7 @@ interface HistoryProps {
 export default function History({ loggedIn }: HistoryProps) {
     return (
         <Box px={4} py={6}>
-            <Typography variant='h4' gutterBottom>
-                Game History
-            </Typography>
+            <PageHeader title='Game History' />
             {loggedIn ? (
                 <Typography variant='body1'>In development...</Typography>
             ) : (

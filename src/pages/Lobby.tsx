@@ -1,5 +1,6 @@
 import { Typography, Box } from '@mui/material';
 import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
+import PageHeader from '../components/misc/PageHeader';
 
 interface LobbyProps {
     loggedIn: boolean;
@@ -8,9 +9,7 @@ interface LobbyProps {
 export default function Lobby({ loggedIn }: LobbyProps) {
     return (
         <Box px={4} py={6}>
-            <Typography variant='h4' gutterBottom>
-                Lobby
-            </Typography>
+            <PageHeader title='Game Lobby' />
             {loggedIn ? (
                 <Typography variant='body1'>In development...</Typography>
             ) : (

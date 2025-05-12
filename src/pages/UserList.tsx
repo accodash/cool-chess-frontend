@@ -1,8 +1,9 @@
-import { Box, Stack, Typography, CircularProgress } from '@mui/material';
+import { Box, Stack, CircularProgress } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import UserCard from '../components/social/UserCard';
 import UserListControls from '../components/social/UserListControls';
 import PaginationControls from '../components/PaginationControls';
+import PageHeader from '../components/misc/PageHeader';
 import { useUsers } from '../hooks/useUsers';
 
 const LIMIT = 50;
@@ -57,9 +58,7 @@ export default function UserList() {
 
     return (
         <Box px={4} py={6}>
-            <Typography variant="h4" mb={2}>
-                User List
-            </Typography>
+            <PageHeader title='Game Lobby' sx={{ mb: 2 }} />
 
             <UserListControls
                 search={search}
