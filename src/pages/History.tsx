@@ -9,12 +9,8 @@ interface HistoryProps {
 export default function History({ loggedIn }: HistoryProps) {
     return (
         <Box px={4} py={6}>
-            <PageHeader title='Game History' />
-            {loggedIn ? (
-                <Typography variant='body1'>In development...</Typography>
-            ) : (
-                <LoginRequiredNotice />
-            )}
+            <PageHeader title="Game History" />
+            {loggedIn ? <Typography variant="body1">In development...</Typography> : <LoginRequiredNotice />}
         </Box>
     );
 }

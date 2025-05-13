@@ -81,7 +81,7 @@ export default function UserList() {
                             username={user.username}
                             createdAt={user.createdAt}
                             imageUrl={user.imageUrl}
-                            followersCount={user.followersCount}
+                            followersCount={user.followersCount!}
                         />
                     ))}
                 </Stack>

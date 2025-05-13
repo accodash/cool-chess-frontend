@@ -9,12 +9,8 @@ interface LobbyProps {
 export default function Lobby({ loggedIn }: LobbyProps) {
     return (
         <Box px={4} py={6}>
-            <PageHeader title='Game Lobby' />
-            {loggedIn ? (
-                <Typography variant='body1'>In development...</Typography>
-            ) : (
-                <LoginRequiredNotice />
-            )}
+            <PageHeader title="Game Lobby" />
+            {loggedIn ? <Typography variant="body1">In development...</Typography> : <LoginRequiredNotice />}
         </Box>
     );
 }

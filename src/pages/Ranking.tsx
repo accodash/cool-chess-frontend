@@ -15,7 +15,7 @@ export default function Ranking() {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const offset = (page - 1) * LIMIT;
 
-    const { data = [], isLoading, isError } = useRanking({mode, offset, limit: LIMIT + 1});
+    const { data = [], isLoading, isError } = useRanking({ mode, offset, limit: LIMIT + 1 });
 
     const hasNextPage = data.length > LIMIT;
 
