@@ -1,4 +1,5 @@
 import {
+    Avatar,
     Drawer,
     Box,
     List,
@@ -10,14 +11,9 @@ import {
     Button,
     Icon,
 } from '@mui/material';
-import {
-    SportsEsports,
-    Article,
-    EmojiPeople,
-    MilitaryTech,
-    Person,
-} from '@mui/icons-material';
+import { SportsEsports, Article, EmojiPeople, MilitaryTech, Person } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 
 const menuItems = [
     { icon: <SportsEsports />, label: 'Play', link: '/play' },
@@ -32,14 +28,12 @@ interface NavigationBarProps {
     loggedIn: boolean;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({
-    onLogin,
-    onLogout,
-    loggedIn,
-}) => {
+function NavigationBar({ onLogin, onLogout, loggedIn }: NavigationBarProps) {
+    const { data: currentUser } = useCurrentUser();
+
     return (
         <Drawer
-            variant='permanent'
+            variant="permanent"
             sx={{
                 width: 120,
                 flexShrink: 0,
@@ -48,53 +42,33 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 },
             }}
         >
-            <Box
-                display='flex'
-                flexDirection='column'
-                height='100%'
-                width='100%'
-                alignItems='stretch'
-            >
+            <Box display="flex" flexDirection="column" height="100%" width="100%" alignItems="stretch">
                 <List sx={{ flex: 1 }}>
-                    <ListItemButton component={Link} to='/'>
+                    <ListItemButton component={Link} to="/">
                         <ListItemText
                             primary={
-                                <Typography variant='h5' align='center'>
+                                <Typography variant="h5" align="center">
                                     Cool Chess
                                 </Typography>
                             }
                         />
                     </ListItemButton>
                     {menuItems.map((item) => (
-                        <ListItem
-                            key={item.label}
-                            disablePadding
-                            sx={{ justifyContent: 'center', width: '100%' }}
-                        >
+                        <ListItem key={item.label} disablePadding sx={{ justifyContent: 'center', width: '100%' }}>
                             <ListItemButton
-                                sx={{
-                                    flexDirection: 'column',
-                                    padding: '12px 0',
-                                }}
+                                sx={{ flexDirection: 'column', padding: '12px 0' }}
                                 component={Link}
                                 to={item.link}
                             >
-                                <ListItemIcon sx={{ minWidth: 'unset', pt: 1 }}>
-                                    {item.icon}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={
-                                        <Typography variant='caption'>
-                                            {item.label}
-                                        </Typography>
-                                    }
-                                />
+                                <ListItemIcon sx={{ minWidth: 'unset', pt: 1 }}>{item.icon}</ListItemIcon>
+                                <ListItemText primary={<Typography variant="caption">{item.label}</Typography>} />
                             </ListItemButton>
                         </ListItem>
                     ))}
                 </List>
-                <Box width='100%' px={1} py={1}>
-                    {loggedIn && (
+
+                <Box width="100%" px={1} py={1}>
+                    {loggedIn && currentUser && (
                         <>
                             <Button
                                 fullWidth
@@ -105,37 +79,29 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                                     gap: 1,
                                 }}
                             >
-                                <Icon sx={{ minWidth: 'unset' }}>
-                                    <Person />
-                                </Icon>
-                                <Typography variant='caption'>
-                                    User ABC
-                                </Typography>
+                                {currentUser?.imageUrl ? (
+                                    <Avatar src={currentUser.imageUrl} sx={{ width: 40, height: 40 }} />
+                                ) : (
+                                    <Icon>
+                                        <Person />
+                                    </Icon>
+                                )}
+                                <Typography variant="caption">{currentUser?.username}</Typography>
                             </Button>
-                            <Button
-                                fullWidth
-                                variant='outlined'
-                                onClick={onLogout}
-                            >
+                            <Button fullWidth variant="outlined" onClick={onLogout}>
                                 Sign Out
                             </Button>
                         </>
                     )}
                     {!loggedIn && (
-                        <>
-                            <Button
-                                fullWidth
-                                variant='contained'
-                                onClick={onLogin}
-                            >
-                                Log In
-                            </Button>
-                        </>
+                        <Button fullWidth variant="contained" onClick={onLogin}>
+                            Log In
+                        </Button>
                     )}
                 </Box>
             </Box>
         </Drawer>
     );
-};
+}
 
 export default NavigationBar;
