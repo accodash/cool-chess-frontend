@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Button, Box } from '@mui/material';
+import { Card, CardContent, Typography, Button, Stack } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -10,15 +10,31 @@ interface Props {
 
 export default function RatingCard({ label, icon, rating, showMatchButton }: Props) {
     return (
-        <Card sx={{ minWidth: 200 }}>
+        <Card
+            elevation={4}
+        >
             <CardContent>
-                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                <Stack direction="row" alignItems="center" spacing={1} mb={1}>
                     {icon}
-                    <Typography variant="h6">{label}</Typography>
-                </Box>
-                <Typography variant="body1">Rating: {rating}</Typography>
+                    <Typography variant="h6" fontWeight="bold">
+                        {label}
+                    </Typography>
+                </Stack>
+
+                <Typography variant="body2" color="text.secondary" mb={1}>
+                    Elo Rating:
+                </Typography>
+                <Typography variant="h5" fontWeight="medium">
+                    {rating}
+                </Typography>
+
                 {showMatchButton && (
-                    <Button variant="contained" size="small" sx={{ mt: 1 }}>
+                    <Button
+                        variant="contained"
+                        size="small"
+                        sx={{ mt: 2, borderRadius: 2, textTransform: 'none' }}
+                        fullWidth
+                    >
                         Match!
                     </Button>
                 )}
