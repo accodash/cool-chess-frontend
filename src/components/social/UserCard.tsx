@@ -1,5 +1,6 @@
 import { Avatar, Box, Paper, Typography, Stack } from '@mui/material';
 import { Person } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 interface UserCardProps {
     index: number;
@@ -7,17 +8,14 @@ interface UserCardProps {
     createdAt: string;
     imageUrl: string | null;
     followersCount: number;
+    uuid: string;
 }
 
-export default function UserCard({
-    index,
-    username,
-    createdAt,
-    imageUrl,
-    followersCount,
-}: UserCardProps) {
+export default function UserCard({ index, username, createdAt, imageUrl, followersCount, uuid }: UserCardProps) {
     return (
         <Paper
+            component={Link}
+            to={`/social/user/${uuid}`}
             elevation={3}
             sx={{
                 p: 2,
@@ -25,25 +23,27 @@ export default function UserCard({
                 alignItems: 'center',
                 gap: 2,
                 borderRadius: 2,
+                textDecoration: 'none',
+                color: 'inherit',
+                transition: 'background-color 0.2s',
+                '&:hover': {
+                    backgroundColor: 'action.hover',
+                },
             }}
         >
-            <Typography
-                variant='body2'
-                color='text.secondary'
-                sx={{ width: 24, textAlign: 'center' }}
-            >
+            <Typography variant="body2" color="text.secondary" sx={{ width: 24, textAlign: 'center' }}>
                 {index}.
             </Typography>
 
             <Avatar src={imageUrl ?? undefined} sx={{ width: 56, height: 56 }}>
-                {!imageUrl && <Person fontSize='large' />}
+                {!imageUrl && <Person fontSize="large" />}
             </Avatar>
 
             <Box>
-                <Typography variant='h6'>{username}</Typography>
+                <Typography variant="h6">{username}</Typography>
 
-                <Stack direction='row' spacing={2} mt={0.5}>
-                    <Typography variant='body2' color='text.secondary'>
+                <Stack direction="row" spacing={2} mt={0.5}>
+                    <Typography variant="body2" color="text.secondary">
                         Joined on{' '}
                         {new Date(createdAt).toLocaleDateString('en-GB', {
                             day: 'numeric',
@@ -52,9 +52,8 @@ export default function UserCard({
                         })}
                     </Typography>
 
-                    <Typography variant='body2' color='text.secondary'>
-                        {followersCount} follower
-                        {followersCount !== 1 ? 's' : ''}
+                    <Typography variant="body2" color="text.secondary">
+                        {followersCount} follower{followersCount !== 1 ? 's' : ''}
                     </Typography>
                 </Stack>
             </Box>

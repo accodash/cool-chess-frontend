@@ -72,21 +72,24 @@ function NavigationBar({ onLogin, onLogout, loggedIn }: NavigationBarProps) {
                         <>
                             <Button
                                 fullWidth
+                                component={Link}
+                                to={`/social/user/${currentUser.uuid}`}
                                 sx={{
                                     mb: 1,
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: 1,
+                                    textTransform: 'none', // optional: keeps username casing
                                 }}
                             >
-                                {currentUser?.imageUrl ? (
+                                {currentUser.imageUrl ? (
                                     <Avatar src={currentUser.imageUrl} sx={{ width: 40, height: 40 }} />
                                 ) : (
                                     <Icon>
                                         <Person />
                                     </Icon>
                                 )}
-                                <Typography variant="caption">{currentUser?.username}</Typography>
+                                <Typography variant="caption">{currentUser.username}</Typography>
                             </Button>
                             <Button fullWidth variant="outlined" onClick={onLogout}>
                                 Sign Out

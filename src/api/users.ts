@@ -40,3 +40,11 @@ export async function fetchCurrentUser(token: string): Promise<User> {
     if (!res.ok) throw new Error('Failed to fetch current user');
     return res.json();
 }
+
+export async function fetchUserById(id: string): Promise<User> {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}user/${id}`);
+    if (!res.ok) {
+        throw new Error('Failed to fetch user');
+    }
+    return res.json();
+}

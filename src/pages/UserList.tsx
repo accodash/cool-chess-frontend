@@ -58,7 +58,7 @@ export default function UserList() {
 
     return (
         <Box px={4} py={6}>
-            <PageHeader title='Game Lobby' sx={{ mb: 2 }} />
+            <PageHeader title="User List" sx={{ mb: 2 }} />
 
             <UserListControls
                 search={search}
@@ -78,6 +78,7 @@ export default function UserList() {
                         <UserCard
                             key={user.uuid}
                             index={(page - 1) * LIMIT + idx + 1}
+                            uuid={user.uuid}
                             username={user.username}
                             createdAt={user.createdAt}
                             imageUrl={user.imageUrl}

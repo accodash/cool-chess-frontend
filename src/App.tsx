@@ -10,6 +10,7 @@ import CTASection from './components/misc/CTASection';
 import Lobby from './pages/Lobby';
 import History from './pages/History';
 import UserList from './pages/UserList';
+import UserProfile from './pages/UserProfile';
 
 function App() {
     const { loginWithRedirect, user, logout, getAccessTokenSilently, isLoading, isAuthenticated } = useAuth0();
@@ -50,6 +51,7 @@ function App() {
                         <Route path="/history" element={<History loggedIn={!!user} />} />
                         <Route path="/ranking" element={<Ranking />} />
                         <Route path="/social" element={<UserList />} />
+                        <Route path="/social/user/:id" element={<UserProfile />} />
                     </Routes>
                     {!user && <CTASection onLogin={loginWithRedirect} />}
                     <Footer />
