@@ -18,6 +18,7 @@ function App() {
     const fetchProtectedData = async () => {
         try {
             const token = await getAccessTokenSilently();
+
             const response = await fetch(import.meta.env.VITE_BACKEND_URL, {
                 method: 'GET',
                 headers: {
@@ -43,7 +44,7 @@ function App() {
     return (
         <BrowserRouter>
             <Box display="flex">
-                <NavigationBar onLogin={loginWithRedirect} onLogout={logout} loggedIn={!!user}></NavigationBar>
+                <NavigationBar onLogin={loginWithRedirect} onLogout={logout}></NavigationBar>
                 <Box flex={1}>
                     <Routes>
                         <Route path="/" element={<Home loggedIn={!!user} onLogin={loginWithRedirect} />} />

@@ -54,6 +54,7 @@ export default function EditProfileDialog({ open, onClose, user }: Props) {
             });
 
             onClose();
+            window.location.reload();
         } catch (error) {
             console.error('Update failed:', error);
         }

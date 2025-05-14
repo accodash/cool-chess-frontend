@@ -25,10 +25,9 @@ const menuItems = [
 interface NavigationBarProps {
     onLogin: () => void;
     onLogout: () => void;
-    loggedIn: boolean;
 }
 
-function NavigationBar({ onLogin, onLogout, loggedIn }: NavigationBarProps) {
+function NavigationBar({ onLogin, onLogout }: NavigationBarProps) {
     const { data: currentUser } = useCurrentUser();
 
     return (
@@ -68,7 +67,7 @@ function NavigationBar({ onLogin, onLogout, loggedIn }: NavigationBarProps) {
                 </List>
 
                 <Box width="100%" px={1} py={1}>
-                    {loggedIn && currentUser && (
+                    {currentUser && (
                         <>
                             <Button
                                 fullWidth
@@ -79,7 +78,7 @@ function NavigationBar({ onLogin, onLogout, loggedIn }: NavigationBarProps) {
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: 1,
-                                    textTransform: 'none', // optional: keeps username casing
+                                    textTransform: 'none',
                                 }}
                             >
                                 {currentUser.imageUrl ? (
@@ -89,14 +88,16 @@ function NavigationBar({ onLogin, onLogout, loggedIn }: NavigationBarProps) {
                                         <Person />
                                     </Icon>
                                 )}
-                                <Typography variant="caption">{currentUser.username}</Typography>
+                                <Typography variant="caption" align="center">
+                                    {currentUser.username}
+                                </Typography>
                             </Button>
                             <Button fullWidth variant="outlined" onClick={onLogout}>
                                 Sign Out
                             </Button>
                         </>
                     )}
-                    {!loggedIn && (
+                    {!currentUser && (
                         <Button fullWidth variant="contained" onClick={onLogin}>
                             Log In
                         </Button>
