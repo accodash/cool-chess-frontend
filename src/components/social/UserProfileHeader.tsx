@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Typography, Stack } from '@mui/material';
-import { Person, Edit, PersonAdd } from '@mui/icons-material';
+import { Person, Edit, PersonAdd, AddReaction } from '@mui/icons-material';
 import { User } from '../../api/users';
 import FollowStats from './FollowStats';
 
@@ -20,15 +20,20 @@ export default function UserProfileHeader({ user, isCurrentUser }: Props) {
                 <FollowStats followers={user.followers?.length ?? 0} following={user.followed_users?.length ?? 0} />
             </Stack>
 
-            <Box ml="auto">
+            <Box ml="auto" display='flex' flexDirection='column' rowGap={1}>
                 {isCurrentUser ? (
                     <Button variant="outlined" startIcon={<Edit />}>
                         Edit Profile
                     </Button>
                 ) : (
+                    <>
                     <Button variant="contained" startIcon={<PersonAdd />}>
                         Follow
                     </Button>
+                    <Button variant="contained" startIcon={<AddReaction />}>
+                        Add friend
+                    </Button>
+                    </>
                 )}
             </Box>
         </Box>
