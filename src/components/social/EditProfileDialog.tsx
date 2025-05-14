@@ -6,11 +6,8 @@ import {
     Button,
     TextField,
     Avatar,
-    IconButton,
     Stack,
-    Box,
     CircularProgress,
-    Tooltip
 } from '@mui/material';
 import { Save, Cancel, UploadFile } from '@mui/icons-material';
 import { useEffect, useRef, useState } from 'react';
@@ -48,7 +45,7 @@ export default function EditProfileDialog({ open, onClose, user }: Props) {
 
             if (file) {
                 uploadedUrl = await uploadMutation.mutateAsync(file);
-                setAvatarPreview(uploadedUrl); // Optional: update preview immediately
+                setAvatarPreview(uploadedUrl);
             }
 
             await updateMutation.mutateAsync({
@@ -72,34 +69,28 @@ export default function EditProfileDialog({ open, onClose, user }: Props) {
     };
 
     return (
-        <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
+        <Dialog
+            open={open}
+            onClose={onClose}
+            fullWidth
+            maxWidth="xs"
+        >
             <DialogTitle>Edit your profile</DialogTitle>
             <DialogContent>
-                <Stack spacing={2} mt={1}>
+                <Stack spacing={3} mt={2} alignItems="center">
+                    <Avatar src={avatarPreview ?? undefined} sx={{ width: 100, height: 100 }} />
+
+                    <Button variant="outlined" startIcon={<UploadFile />} onClick={() => fileInputRef.current?.click()}>
+                        Upload Avatar
+                    </Button>
+                    <input ref={fileInputRef} type="file" hidden accept="image/*" onChange={handleFileChange} />
+
                     <TextField
                         label="Username"
                         fullWidth
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                    <Box display="flex" alignItems="center" gap={2}>
-                        <Avatar src={avatarPreview ?? undefined} sx={{ width: 64, height: 64 }} />
-                        <Tooltip title="Upload Avatar">
-                            <IconButton
-                                color="primary"
-                                onClick={() => fileInputRef.current?.click()}
-                            >
-                                <UploadFile />
-                            </IconButton>
-                        </Tooltip>
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            hidden
-                            accept="image/*"
-                            onChange={handleFileChange}
-                        />
-                    </Box>
                 </Stack>
             </DialogContent>
             <DialogActions>
