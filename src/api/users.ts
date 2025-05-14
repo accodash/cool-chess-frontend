@@ -48,3 +48,34 @@ export async function fetchUserById(id: string): Promise<User> {
     }
     return res.json();
 }
+
+export async function updateCurrentUser(token: string, data: { username?: string | null; imageUrl?: string | null }): Promise<User> {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}user/current-user`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!res.ok) throw new Error('Failed to update user');
+    return res.json();
+}
+
+export async function uploadUserAvatar(token: string, file: File): Promise<string> {
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}user/current-user/upload/avatar`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+    });
+
+    if (!res.ok) throw new Error('Failed to upload avatar');
+    const data = await res.json();
+    return data.imageUrl;
+}
