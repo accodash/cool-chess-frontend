@@ -47,7 +47,7 @@ export default function UserProfileHeader({ user, isCurrentUser }: Props) {
                     ) : (
                         <>
                             <FollowActionButtons userId={user.uuid} />
-                            {/* <FriendActionButtons userId={user.uuid} /> */}
+                            <FriendActionButtons userId={user.uuid} />
                         </>
                     )}
                 </Box>
