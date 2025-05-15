@@ -43,22 +43,19 @@ export default function FriendActionButtons({ userId }: Props) {
     };
 
     const handleRemoveRequest = () => {
-        console.log(sentRequest)
-        if (sentRequest) {
-            removeFriend.mutate(sentRequest?.id);
-        }
+        if (sentRequest) removeFriend.mutate(sentRequest?.id);
     };
 
     const handleAcceptRequest = () => {
-        if (receivedRequest) {
-            acceptRequest.mutate(receivedRequest.id);
-        }
+        if (receivedRequest) acceptRequest.mutate(receivedRequest.id);
+    };
+
+    const handleRejectRequest = () => {
+        if (receivedRequest) removeFriend.mutate(receivedRequest.id);
     };
 
     const handleRemoveFriend = () => {
-        if (friendRelation) {
-            removeFriend.mutate(friendRelation.id);
-        }
+        if (friendRelation) removeFriend.mutate(friendRelation.id);
     };
 
     return (
@@ -77,9 +74,14 @@ export default function FriendActionButtons({ userId }: Props) {
                     />
                 </>
             ) : receivedRequest ? (
-                <Button variant="contained" onClick={handleAcceptRequest}>
-                    Accept friend request
-                </Button>
+                <>
+                    <Button variant="contained" onClick={handleAcceptRequest}>
+                        Accept friend request
+                    </Button>
+                    <Button variant="outlined" onClick={handleRejectRequest}>
+                        Reject friend request
+                    </Button>
+                </>
             ) : sentRequest ? (
                 <Button variant="outlined" onClick={handleRemoveRequest}>
                     Remove friend request
