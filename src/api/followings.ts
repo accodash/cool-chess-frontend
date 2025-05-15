@@ -1,7 +1,9 @@
+import { User } from './users';
+
 export interface Following {
     id: string;
-    follower: { uuid: string };
-    followedUser: { uuid: string };
+    follower?: User;
+    followedUser?: User;
 }
 
 export async function fetchFollowers(userId: string): Promise<Following[]> {

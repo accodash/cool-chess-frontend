@@ -52,6 +52,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialog: {
+        styleOverrides: {
+            paper: {
+                backgroundImage: 'none',
+            },
+        },
+    },
   },
 });
 

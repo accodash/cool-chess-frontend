@@ -7,7 +7,7 @@ interface UserCardProps {
     username: string;
     createdAt: string;
     imageUrl: string | null;
-    followersCount: number;
+    followersCount?: number;
     uuid: string;
 }
 
@@ -51,10 +51,11 @@ export default function UserCard({ index, username, createdAt, imageUrl, followe
                             year: 'numeric',
                         })}
                     </Typography>
-
-                    <Typography variant="body2" color="text.secondary">
-                        {followersCount} follower{followersCount !== 1 ? 's' : ''}
-                    </Typography>
+                    {followersCount !== undefined && (
+                        <Typography variant="body2" color="text.secondary">
+                            {followersCount} follower{followersCount !== 1 ? 's' : ''}
+                        </Typography>
+                    )}
                 </Stack>
             </Box>
         </Paper>

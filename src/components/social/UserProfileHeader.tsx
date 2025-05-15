@@ -8,6 +8,8 @@ import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { useFollowUser } from '../../hooks/useFollowUser';
 import { useUnfollowUser } from '../../hooks/useUnfollowUser';
 import { useFollowings } from '../../hooks/useFollowings';
+import { useFollowers } from '../../hooks/useFollowers';
+import FollowDialog from './FollowDialog';
 
 interface Props {
     user: User;
@@ -16,21 +18,21 @@ interface Props {
 
 export default function UserProfileHeader({ user, isCurrentUser }: Props) {
     const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [showFollowings, setShowFollowings] = useState(false);
+    const [showFollowers, setShowFollowers] = useState(false);
+
     const { data: currentUser } = useCurrentUser();
     const { data: currentUserFollowings } = useFollowings(currentUser?.uuid ?? '');
+    const { data: followers } = useFollowers(user.uuid);
+    const { data: followings } = useFollowings(user.uuid);
 
     const followMutation = useFollowUser();
     const unfollowMutation = useUnfollowUser();
 
-    const isFollowing = currentUserFollowings?.some((f) => f.followedUser.uuid === user.uuid);
+    const isFollowing = currentUserFollowings?.some((f) => f.followedUser?.uuid === user.uuid);
 
-    const handleFollow = () => {
-        followMutation.mutate(user.uuid);
-    };
-
-    const handleUnfollow = () => {
-        unfollowMutation.mutate(user.uuid);
-    };
+    const handleFollow = () => followMutation.mutate(user.uuid);
+    const handleUnfollow = () => unfollowMutation.mutate(user.uuid);
 
     return (
         <>
@@ -41,16 +43,20 @@ export default function UserProfileHeader({ user, isCurrentUser }: Props) {
 
                 <Stack spacing={1}>
                     <Typography variant="h5">{user.username}</Typography>
-                    <FollowStats followers={user.followers?.length ?? 0} following={user.followed_users?.length ?? 0} />
+                    <FollowStats
+                        followers={followers?.length ?? 0}
+                        following={followings?.length ?? 0}
+                        onFollowersClick={() => setShowFollowers(true)}
+                        onFollowingsClick={() => setShowFollowings(true)}
+                    />
                 </Stack>
 
                 <Box ml="auto" display="flex" flexDirection="column" rowGap={1}>
-                    {isCurrentUser && (
+                    {isCurrentUser ? (
                         <Button variant="outlined" startIcon={<Edit />} onClick={() => setOpenEditDialog(true)}>
                             Edit Profile
                         </Button>
-                    )}
-                    {!!currentUser && !isCurrentUser && (
+                    ) : !!currentUser && (
                         <>
                             {isFollowing ? (
                                 <Button
@@ -78,9 +84,24 @@ export default function UserProfileHeader({ user, isCurrentUser }: Props) {
                     )}
                 </Box>
             </Box>
+
             {isCurrentUser && (
                 <EditProfileDialog open={openEditDialog} onClose={() => setOpenEditDialog(false)} user={user} />
             )}
+
+            <FollowDialog
+                open={showFollowers}
+                onClose={() => setShowFollowers(false)}
+                title="Followers"
+                users={(followers ?? []).map((f) => f.follower!)}
+            />
+
+            <FollowDialog
+                open={showFollowings}
+                onClose={() => setShowFollowings(false)}
+                title="Followings"
+                users={(followings ?? []).map((f) => f.followedUser!)}
+            />
         </>
     );
 }
