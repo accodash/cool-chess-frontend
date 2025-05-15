@@ -45,11 +45,12 @@ export default function UserProfileHeader({ user, isCurrentUser }: Props) {
                 </Stack>
 
                 <Box ml="auto" display="flex" flexDirection="column" rowGap={1}>
-                    {isCurrentUser ? (
+                    {isCurrentUser && (
                         <Button variant="outlined" startIcon={<Edit />} onClick={() => setOpenEditDialog(true)}>
                             Edit Profile
                         </Button>
-                    ) : (
+                    )}
+                    {!!currentUser && !isCurrentUser && (
                         <>
                             {isFollowing ? (
                                 <Button
@@ -73,7 +74,6 @@ export default function UserProfileHeader({ user, isCurrentUser }: Props) {
                             <Button variant="contained" startIcon={<AddReaction />}>
                                 Add friend
                             </Button>
-
                         </>
                     )}
                 </Box>
