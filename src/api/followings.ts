@@ -26,8 +26,6 @@ export async function followUser(token: string, targetUserId: string): Promise<v
         },
     });
 
-    console.log(res);
-
     if (!res.ok) {
         throw new Error('Failed to follow user');
     }
