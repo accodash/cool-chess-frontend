@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Avatar, Box, Button, Typography, Stack } from '@mui/material';
 import { Person, Edit } from '@mui/icons-material';
-import { User } from '../../api/users';
-import FollowStats from './FollowStats';
+import { User } from '../../../api/users';
+import FollowStats from '../follows/FollowStats';
 import EditProfileDialog from './EditProfileDialog';
-import { useFollowings } from '../../hooks/useFollowings';
-import { useFollowers } from '../../hooks/useFollowers';
-import FollowDialog from './FollowDialog';
-import FollowActionButtons from './FollowActionButtons';
-import FriendActionButtons from './FriendActionButtons';
+import { useFollowings } from '../../../hooks/useFollowings';
+import { useFollowers } from '../../../hooks/useFollowers';
+import FollowDialog from '../follows/FollowDialog';
+import FollowActionButtons from '../follows/FollowActionButtons';
+import FriendActionButtons from '../FriendActionButtons';
 
 interface Props {
     user: User;

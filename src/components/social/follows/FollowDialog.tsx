@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle, DialogContent, Stack, Typography } from '@mui/material';
-import UserCard from './UserCard';
-import { User } from '../../api/users';
+import UserCard from '../UserCard';
+import { User } from '../../../api/users';
 
 interface FollowDialogProps {
     open: boolean;

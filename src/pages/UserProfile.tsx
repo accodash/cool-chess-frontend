@@ -3,8 +3,8 @@ import { Box } from '@mui/material';
 import PageHeader from '../components/misc/PageHeader';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { useUserById } from '../hooks/useUserById';
-import UserProfileHeader from '../components/social/UserProfileHeader';
-import RatingsGrid from '../components/social/RatingsGrid';
+import UserProfileHeader from '../components/social/profile/UserProfileHeader';
+import RatingsGrid from '../components/social/profile/RatingsGrid';
 
 export default function UserProfile() {
     const { id } = useParams();

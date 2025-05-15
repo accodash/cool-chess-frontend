@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
-import { useCurrentUser } from '../../hooks/useCurrentUser';
-import { useFollowings } from '../../hooks/useFollowings';
-import { useFollowUser } from '../../hooks/useFollowUser';
-import { useUnfollowUser } from '../../hooks/useUnfollowUser';
+import { useCurrentUser } from '../../../hooks/useCurrentUser';
+import { useFollowings } from '../../../hooks/useFollowings';
+import { useFollowUser } from '../../../hooks/useFollowUser';
+import { useUnfollowUser } from '../../../hooks/useUnfollowUser';
 
 interface Props {
     userId: string;

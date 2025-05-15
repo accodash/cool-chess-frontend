@@ -19,7 +19,7 @@ const menuItems = [
     { icon: <SportsEsports />, label: 'Play', link: '/play' },
     { icon: <Article />, label: 'History', link: '/history' },
     { icon: <MilitaryTech />, label: 'Ranking', link: '/ranking' },
-    { icon: <EmojiPeople />, label: 'Social', link: '/social' },
+    { icon: <EmojiPeople />, label: 'Social', link: '/social/friends' },
 ];
 
 interface NavigationBarProps {

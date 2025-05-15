@@ -1,6 +1,7 @@
 import { Avatar, Box, Paper, Typography, Stack } from '@mui/material';
 import { Person } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 interface UserCardProps {
     index: number;
@@ -9,9 +10,18 @@ interface UserCardProps {
     imageUrl: string | null;
     followersCount?: number;
     uuid: string;
+    action?: ReactNode;
 }
 
-export default function UserCard({ index, username, createdAt, imageUrl, followersCount, uuid }: UserCardProps) {
+export default function UserCard({
+    index,
+    username,
+    createdAt,
+    imageUrl,
+    followersCount,
+    uuid,
+    action,
+}: UserCardProps) {
     return (
         <Paper
             component={Link}
@@ -24,6 +34,7 @@ export default function UserCard({ index, username, createdAt, imageUrl, followe
                 gap: 2,
                 borderRadius: 2,
                 textDecoration: 'none',
+                cursor: 'pointer',
                 color: 'inherit',
                 transition: 'background-color 0.2s',
                 '&:hover': {
@@ -39,7 +50,7 @@ export default function UserCard({ index, username, createdAt, imageUrl, followe
                 {!imageUrl && <Person fontSize="large" />}
             </Avatar>
 
-            <Box>
+            <Box sx={{ flexGrow: 1 }}>
                 <Typography variant="h6">{username}</Typography>
 
                 <Stack direction="row" spacing={2} mt={0.5}>
@@ -58,6 +69,18 @@ export default function UserCard({ index, username, createdAt, imageUrl, followe
                     )}
                 </Stack>
             </Box>
+
+            {action && (
+                <Box
+                    ml="auto"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }}
+                >
+                    {action}
+                </Box>
+            )}
         </Paper>
     );
 }

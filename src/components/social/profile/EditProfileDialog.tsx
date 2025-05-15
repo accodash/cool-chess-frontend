@@ -11,9 +11,9 @@ import {
 } from '@mui/material';
 import { Save, Cancel, UploadFile } from '@mui/icons-material';
 import { useEffect, useRef, useState } from 'react';
-import { User } from '../../api/users';
-import { useUpdateCurrentUser } from '../../hooks/useUpdateCurrentUser';
-import { useUploadAvatar } from '../../hooks/useUploadAvatar';
+import { User } from '../../../api/users';
+import { useUpdateCurrentUser } from '../../../hooks/useUpdateCurrentUser';
+import { useUploadAvatar } from '../../../hooks/useUploadAvatar';
 
 interface Props {
     open: boolean;
