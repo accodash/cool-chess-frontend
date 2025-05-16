@@ -84,7 +84,7 @@ export default function FriendActionButtons({ userId }: Props) {
                 </>
             ) : sentRequest ? (
                 <Button variant="outlined" onClick={handleRemoveRequest}>
-                    Remove friend request
+                    Cancel friend request
                 </Button>
             ) : (
                 <Button variant="contained" onClick={handleSendRequest}>
