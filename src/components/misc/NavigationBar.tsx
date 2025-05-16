@@ -16,10 +16,10 @@ import { Link } from 'react-router-dom';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 
 const menuItems = [
-    { icon: <SportsEsports />, label: 'Play', link: '/play' },
-    { icon: <Article />, label: 'History', link: '/history' },
-    { icon: <MilitaryTech />, label: 'Ranking', link: '/ranking' },
-    { icon: <EmojiPeople />, label: 'Social', link: '/social/friends' },
+    { icon: <SportsEsports />, label: 'Play', link: '/play', publicLink: '/play' },
+    { icon: <Article />, label: 'History', link: '/history', publicLink: '/history' },
+    { icon: <MilitaryTech />, label: 'Ranking', link: '/ranking', publicLink: '/ranking' },
+    { icon: <EmojiPeople />, label: 'Social', link: '/social/friends', publicLink: '/social/all-users' },
 ];
 
 interface NavigationBarProps {
@@ -57,7 +57,7 @@ function NavigationBar({ onLogin, onLogout }: NavigationBarProps) {
                             <ListItemButton
                                 sx={{ flexDirection: 'column', padding: '12px 0' }}
                                 component={Link}
-                                to={item.link}
+                                to={!!currentUser ? item.link : item.publicLink}
                             >
                                 <ListItemIcon sx={{ minWidth: 'unset', pt: 1 }}>{item.icon}</ListItemIcon>
                                 <ListItemText primary={<Typography variant="caption">{item.label}</Typography>} />
