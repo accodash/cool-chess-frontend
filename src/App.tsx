@@ -1,4 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { Box } from '@mui/material';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavigationBar from './components/misc/NavigationBar';
@@ -14,19 +13,20 @@ import UserListTab from './pages/UserListTab';
 import FriendsTab from './pages/FriendsTab';
 import SentRequestsTab from './pages/SentRequestsTab';
 import ReceivedRequestsTab from './pages/ReceivedRequestsTab';
+import { useCurrentUser } from './hooks/useCurrentUser';
 
 function App() {
-    const { loginWithRedirect, user, logout } = useAuth0();
+    const { data: currentUser } = useCurrentUser();
 
     return (
         <BrowserRouter>
             <Box display="flex">
-                <NavigationBar onLogin={loginWithRedirect} onLogout={logout}></NavigationBar>
+                <NavigationBar></NavigationBar>
                 <Box flex={1}>
                     <Routes>
-                        <Route path="/" element={<Home loggedIn={!!user} onLogin={loginWithRedirect} />} />
-                        <Route path="/play" element={<Lobby loggedIn={!!user} />} />
-                        <Route path="/history" element={<History loggedIn={!!user} />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/play" element={<Lobby />} />
+                        <Route path="/history" element={<History />} />
                         <Route path="/ranking" element={<Ranking />} />
                         <Route path="/social" element={<Social />}>
                             <Route path="friends" element={<FriendsTab />} />
@@ -36,7 +36,7 @@ function App() {
                         </Route>
                         <Route path="/social/user/:id" element={<UserProfile />} />
                     </Routes>
-                    {!user && <CTASection onLogin={loginWithRedirect} />}
+                    {!currentUser && <CTASection />}
                     <Footer />
                 </Box>
             </Box>

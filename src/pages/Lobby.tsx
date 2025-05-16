@@ -1,16 +1,15 @@
 import { Typography, Box } from '@mui/material';
 import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
 import PageHeader from '../components/misc/PageHeader';
+import { useCurrentUser } from '../hooks/useCurrentUser';
 
-interface LobbyProps {
-    loggedIn: boolean;
-}
+export default function Lobby() {
+    const { data: currentUser } = useCurrentUser();
 
-export default function Lobby({ loggedIn }: LobbyProps) {
     return (
         <Box px={4} py={6}>
             <PageHeader title="Game Lobby" />
-            {loggedIn ? <Typography variant="body1">In development...</Typography> : <LoginRequiredNotice />}
+            {!!currentUser ? <Typography variant="body1">In development...</Typography> : <LoginRequiredNotice />}
         </Box>
     );
 }

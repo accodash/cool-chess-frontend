@@ -14,6 +14,7 @@ import {
 import { SportsEsports, Article, EmojiPeople, MilitaryTech, Person } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const menuItems = [
     { icon: <SportsEsports />, label: 'Play', link: '/play', publicLink: '/play' },
@@ -22,12 +23,8 @@ const menuItems = [
     { icon: <EmojiPeople />, label: 'Social', link: '/social/friends', publicLink: '/social/all-users' },
 ];
 
-interface NavigationBarProps {
-    onLogin: () => void;
-    onLogout: () => void;
-}
-
-function NavigationBar({ onLogin, onLogout }: NavigationBarProps) {
+function NavigationBar() {
+    const { loginWithRedirect, logout } = useAuth0();
     const { data: currentUser } = useCurrentUser();
 
     return (
@@ -92,13 +89,13 @@ function NavigationBar({ onLogin, onLogout }: NavigationBarProps) {
                                     {currentUser.username}
                                 </Typography>
                             </Button>
-                            <Button fullWidth variant="outlined" onClick={onLogout}>
+                            <Button fullWidth variant="outlined" onClick={() => logout()}>
                                 Sign Out
                             </Button>
                         </>
                     )}
                     {!currentUser && (
-                        <Button fullWidth variant="contained" onClick={onLogin}>
+                        <Button fullWidth variant="contained" onClick={() => loginWithRedirect()}>
                             Log In
                         </Button>
                     )}

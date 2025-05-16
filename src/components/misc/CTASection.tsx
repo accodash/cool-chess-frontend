@@ -1,10 +1,9 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Typography, Button } from '@mui/material';
 
-interface CTASectionProps {
-    onLogin: () => void;
-}
+export default function CTASection() {
+    const { loginWithRedirect } = useAuth0();
 
-const CTASection: React.FC<CTASectionProps> = ({ onLogin }) => {
     return (
         <Box
             sx={{
@@ -24,12 +23,10 @@ const CTASection: React.FC<CTASectionProps> = ({ onLogin }) => {
                 variant='contained'
                 color='primary'
                 size='large'
-                onClick={onLogin}
+                onClick={() => loginWithRedirect()}
             >
                 Sign in
             </Button>
         </Box>
     );
 };
-
-export default CTASection;
