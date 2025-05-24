@@ -12,7 +12,7 @@ const mockEntries: Rating[] = [
             uuid: '1',
             username: 'RP',
             imageUrl: 'https://zsk.poznan.pl/ryszard.png',
-            createdAt: '',
+            createdAt: '2025-05-08T16:06:44.644Z',
         },
     },
     {
@@ -23,7 +23,7 @@ const mockEntries: Rating[] = [
             uuid: '2',
             username: 'Bravo',
             imageUrl: null,
-            createdAt: '',
+            createdAt: '2025-05-08T16:05:44.644Z',
         },
     },
 ];
