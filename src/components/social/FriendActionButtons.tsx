@@ -43,7 +43,7 @@ export default function FriendActionButtons({ userId }: Props) {
     };
 
     const handleRemoveRequest = () => {
-        if (sentRequest) removeFriend.mutate(sentRequest?.id);
+        if (sentRequest) removeFriend.mutate(sentRequest.id);
     };
 
     const handleAcceptRequest = () => {
