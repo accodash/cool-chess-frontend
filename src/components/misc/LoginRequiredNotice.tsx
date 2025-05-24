@@ -12,7 +12,7 @@ export default function LoginRequiredNotice() {
             textAlign='center'
             px={3}
         >
-            <EmojiPeople sx={{ fontSize: 64, mb: 2 }} />
+            <EmojiPeople data-testid="EmojiPeopleIcon" sx={{ fontSize: 64, mb: 2 }} />
             <Typography variant='h5' gutterBottom>
                 Hey there!
             </Typography>
