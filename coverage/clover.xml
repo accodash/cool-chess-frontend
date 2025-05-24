@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1748081386901" clover="3.2.0">
+  <project timestamp="1748081386901" name="All files">
+    <metrics statements="217" coveredstatements="217" conditionals="159" coveredconditionals="159" methods="65" coveredmethods="65" elements="441" coveredelements="441" complexity="0" loc="217" ncloc="217" packages="6" files="21" classes="21"/>
+    <package name="home">
+      <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+      <file name="FeaturesSection.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/home/FeaturesSection.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="30" count="12" type="stmt"/>
+      </file>
+      <file name="HomeHero.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/home/HomeHero.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="misc">
+      <metrics statements="39" coveredstatements="39" conditionals="10" coveredconditionals="10" methods="13" coveredmethods="13"/>
+      <file name="CTASection.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/misc/CTASection.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+      </file>
+      <file name="ConfirmDialog.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/misc/ConfirmDialog.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+      </file>
+      <file name="Footer.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/misc/Footer.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+      </file>
+      <file name="LoginRequiredNotice.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/misc/LoginRequiredNotice.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+      </file>
+      <file name="NavigationBar.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/misc/NavigationBar.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
+        <line num="28" count="7" type="stmt"/>
+        <line num="30" count="7" type="stmt"/>
+        <line num="53" count="28" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="98" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+      </file>
+      <file name="PageHeader.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/misc/PageHeader.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+      </file>
+      <file name="PaginationControls.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/misc/PaginationControls.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="ranking">
+      <metrics statements="12" coveredstatements="12" conditionals="18" coveredconditionals="18" methods="5" coveredmethods="5"/>
+      <file name="ModeSelector.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/ranking/ModeSelector.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+      </file>
+      <file name="RankingList.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/ranking/RankingList.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="16" coveredconditionals="16" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="13" count="11" type="stmt"/>
+      </file>
+    </package>
+    <package name="social">
+      <metrics statements="55" coveredstatements="55" conditionals="47" coveredconditionals="47" methods="17" coveredmethods="17"/>
+      <file name="FriendActionButtons.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/FriendActionButtons.tsx">
+        <metrics statements="39" coveredstatements="39" conditionals="35" coveredconditionals="35" methods="11" coveredmethods="11"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="12" type="stmt"/>
+        <line num="18" count="12" type="stmt"/>
+        <line num="19" count="12" type="stmt"/>
+        <line num="20" count="12" type="stmt"/>
+        <line num="22" count="12" type="stmt"/>
+        <line num="23" count="12" type="stmt"/>
+        <line num="24" count="12" type="stmt"/>
+        <line num="26" count="12" type="stmt"/>
+        <line num="28" count="12" type="cond" truecount="3" falsecount="0"/>
+        <line num="30" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="31" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="35" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="36" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="10" type="cond" truecount="6" falsecount="0"/>
+        <line num="41" count="10" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="45" count="10" type="stmt"/>
+        <line num="46" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="49" count="10" type="stmt"/>
+        <line num="50" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="53" count="10" type="stmt"/>
+        <line num="54" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="57" count="10" type="stmt"/>
+        <line num="58" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="61" count="10" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+      </file>
+      <file name="UserCard.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/UserCard.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="12" coveredconditionals="12" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="25" count="10" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+      </file>
+      <file name="UserListControls.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/UserListControls.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="71" count="20" type="stmt"/>
+      </file>
+    </package>
+    <package name="social.follows">
+      <metrics statements="25" coveredstatements="25" conditionals="23" coveredconditionals="23" methods="7" coveredmethods="7"/>
+      <file name="FollowActionButtons.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/follows/FollowActionButtons.tsx">
+        <metrics statements="17" coveredstatements="17" conditionals="21" coveredconditionals="21" methods="4" coveredmethods="4"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+        <line num="13" count="9" type="cond" truecount="8" falsecount="0"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="18" count="9" type="cond" truecount="8" falsecount="0"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="28" count="9" type="cond" truecount="3" falsecount="0"/>
+        <line num="30" count="7" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="FollowDialog.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/follows/FollowDialog.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+      </file>
+      <file name="FollowStats.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/follows/FollowStats.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="social.profile">
+      <metrics statements="71" coveredstatements="71" conditionals="57" coveredconditionals="57" methods="19" coveredmethods="19"/>
+      <file name="EditProfileDialog.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/profile/EditProfileDialog.tsx">
+        <metrics statements="36" coveredstatements="36" conditionals="17" coveredconditionals="17" methods="7" coveredmethods="7"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="24" type="stmt"/>
+        <line num="26" count="24" type="stmt"/>
+        <line num="27" count="24" type="stmt"/>
+        <line num="29" count="24" type="stmt"/>
+        <line num="31" count="24" type="stmt"/>
+        <line num="32" count="24" type="stmt"/>
+        <line num="34" count="24" type="stmt"/>
+        <line num="35" count="13" type="cond" truecount="1" falsecount="0"/>
+        <line num="36" count="13" type="stmt"/>
+        <line num="37" count="13" type="stmt"/>
+        <line num="38" count="13" type="stmt"/>
+        <line num="42" count="24" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="46" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="63" count="24" type="stmt"/>
+        <line num="64" count="5" type="cond" truecount="4" falsecount="0"/>
+        <line num="65" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="66" count="4" type="stmt"/>
+        <line num="67" count="4" type="stmt"/>
+        <line num="68" count="4" type="stmt"/>
+        <line num="72" count="24" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+      </file>
+      <file name="RatingCard.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/profile/RatingCard.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+      </file>
+      <file name="RatingsGrid.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/profile/RatingsGrid.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="19" count="12" type="stmt"/>
+      </file>
+      <file name="UserProfileHeader.tsx" path="/home/pogro/Documents/cool-chess-frontend/src/components/social/profile/UserProfileHeader.tsx">
+        <metrics statements="25" coveredstatements="25" conditionals="34" coveredconditionals="34" methods="9" coveredmethods="9"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="24" type="stmt"/>
+        <line num="20" count="24" type="stmt"/>
+        <line num="21" count="24" type="stmt"/>
+        <line num="22" count="24" type="stmt"/>
+        <line num="23" count="24" type="stmt"/>
+        <line num="25" count="24" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="64" count="36" type="cond" truecount="4" falsecount="0"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="71" count="18" type="cond" truecount="4" falsecount="0"/>
+      </file>
+    </package>
+  </project>
+</coverage>
