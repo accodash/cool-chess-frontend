@@ -26,7 +26,9 @@ export default function FriendsTab() {
     return (
         <Box display="flex" flexDirection="column" gap={2}>
             {friends.map((relation, index) => {
-                const user = relation.firstUser.uuid === currentUser?.uuid ? relation.secondUser : relation.firstUser;
+                if (!currentUser) return;
+
+                const user = relation.firstUser.uuid === currentUser.uuid ? relation.secondUser : relation.firstUser;
 
                 return (
                     <UserCard
