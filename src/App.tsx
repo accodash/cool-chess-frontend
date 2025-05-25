@@ -14,6 +14,7 @@ import FriendsTab from './pages/FriendsTab';
 import SentRequestsTab from './pages/SentRequestsTab';
 import ReceivedRequestsTab from './pages/ReceivedRequestsTab';
 import { useCurrentUser } from './hooks/useCurrentUser';
+import Match from './pages/Match';
 
 function App() {
     const { data: currentUser } = useCurrentUser();
@@ -35,6 +36,7 @@ function App() {
                             <Route path="all-users" element={<UserListTab />} />
                         </Route>
                         <Route path="/social/user/:id" element={<UserProfile />} />
+                        <Route path="/match/:id" element={<Match />} />
                     </Routes>
                     {!currentUser && <CTASection />}
                     <Footer />
