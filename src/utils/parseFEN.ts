@@ -1,4 +1,4 @@
-const pieceUnicode = {
+export const pieceUnicode = {
     r: '/rb.png',
     n: '/nb.png',
     b: '/bb.png',
