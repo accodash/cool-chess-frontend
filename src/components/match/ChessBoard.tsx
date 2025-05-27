@@ -20,7 +20,6 @@ export default function ChessBoard({
             display="grid"
             gridTemplateColumns="repeat(8, 60px)"
             gridTemplateRows="repeat(8, 60px)"
-            border="2px solid black"
         >
             {board.map((row, rowIndex) =>
                 row.map((image, colIndex) => {
