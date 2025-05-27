@@ -90,7 +90,7 @@ export default function Match() {
     const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
     const [highlightedSquares, setHighlightedSquares] = useState<Set<string>>(new Set());
 
-    function handleSquareClick(colIndex: number, rowIndex: number, hasPiece: boolean) {
+    function handleSquareClick(colIndex: number, rowIndex: number, piece: string | null) {
         const LETTERS = usersColor === 'white' ? 'abcdefgh' : 'hgfedcba';
         const rank = usersColor === 'white' ? 8 - rowIndex : rowIndex + 1;
         const file = LETTERS[colIndex];
@@ -101,14 +101,14 @@ export default function Match() {
             console.log(`tries to move from ${selectedSquare} to ${position}`);
         }
 
-        if (!hasPiece) {
+        if (!piece) {
             setSelectedSquare(null);
             setHighlightedSquares(new Set());
             return;
         }
 
         const moves = possibleMoves[position];
-        if (moves && moves.length > 0) {
+        if (moves && moves.length > 0 && piece[2] === usersColor[0]) {
             setSelectedSquare(position);
             setHighlightedSquares(new Set(moves.map((m) => m.to)));
         } else {
@@ -146,7 +146,7 @@ export default function Match() {
                                     alignItems="center"
                                     justifyContent="center"
                                     fontSize="32px"
-                                    onClick={() => handleSquareClick(colIndex, rowIndex, !!image)}
+                                    onClick={() => handleSquareClick(colIndex, rowIndex, image)}
                                     bgcolor={isHighlighted ? '#baca44' : isDark ? '#769656' : '#eeeed2'}
                                 >
                                     {image && <img src={image} />}
