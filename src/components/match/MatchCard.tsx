@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 interface MatchCardProps {
     match: Match;
+    isStatic?: boolean;
 }
 
 const MODES = [
@@ -14,12 +15,8 @@ const MODES = [
     { value: 'rapid', label: 'Rapid', icon: <RocketLaunch fontSize="small" /> },
 ];
 
-export default function MatchCard({ match }: MatchCardProps) {
+export default function MatchCard({ match, isStatic = false }: MatchCardProps) {
     const { user } = useAuth0();
-
-    const isCurrentUserWhite = match.whitePlayer.uuid === user?.sub;
-    const opponent = isCurrentUserWhite ? match.blackPlayer : match.whitePlayer;
-    const you = isCurrentUserWhite ? match.whitePlayer : match.blackPlayer;
 
     const result = match.isCompleted
         ? !match.winner
@@ -42,38 +39,60 @@ export default function MatchCard({ match }: MatchCardProps) {
 
     const mode = MODES.find((m) => m.value === match.mode);
 
+    const cardContent = (
+        <Stack spacing={1}>
+            <Typography variant="body2" color="text.secondary" textAlign={isStatic ? 'center' : 'left'}>
+                {formattedDate}
+            </Typography>
+
+            <Box
+                display="flex"
+                gap={2}
+                alignItems="center"
+                py={1}
+                justifyContent={isStatic ? 'center' : 'flex-start'}
+            >
+                <img src="/kw.png" height={40} />
+                <Typography variant="h6">
+                    {match.whitePlayer.username} vs {match.blackPlayer.username}
+                </Typography>
+                <img src="/kb.png" height={40} />
+            </Box>
+
+            <Box display="flex" gap={1} flexWrap="wrap" justifyContent={isStatic ? 'center' : 'flex-start'}>
+                <Chip icon={mode?.icon} label={mode?.label ?? match.mode} />
+                <Chip
+                    icon={
+                        match.isRanked ? (
+                            <EmojiEvents fontSize="small" />
+                        ) : (
+                            <SentimentVerySatisfied fontSize="small" />
+                        )
+                    }
+                    label={match.isRanked ? 'Ranked' : 'Unranked'}
+                    color="primary"
+                />
+                <Chip label={result} color={resultColor as any} />
+            </Box>
+        </Stack>
+    );
+
+    if (isStatic) {
+        return (
+            <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
+                {cardContent}
+            </Paper>
+        );
+    }
+
     return (
         <Paper
             component={Link}
             to={`/history/${match.id}`}
             elevation={3}
-            sx={{ p: 2, borderRadius: 2, textDecoration: 'none' }}
+            sx={{ p: 2, borderRadius: 2, textDecoration: 'none', color: 'inherit' }}
         >
-            <Stack spacing={1}>
-                <Typography variant="body2" color="text.secondary">
-                    {formattedDate}
-                </Typography>
-
-                <Typography variant="h6">
-                    {you.username} vs {opponent.username}
-                </Typography>
-
-                <Box display="flex" gap={1} flexWrap="wrap">
-                    <Chip icon={mode?.icon} label={mode?.label ?? match.mode} />
-                    <Chip
-                        icon={
-                            match.isRanked ? (
-                                <EmojiEvents fontSize="small" />
-                            ) : (
-                                <SentimentVerySatisfied fontSize="small" />
-                            )
-                        }
-                        label={match.isRanked ? 'Ranked' : 'Unranked'}
-                        color="primary"
-                    />
-                    <Chip label={result} color={resultColor as any} />
-                </Box>
-            </Stack>
+            {cardContent}
         </Paper>
     );
 }

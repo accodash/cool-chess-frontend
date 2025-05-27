@@ -31,7 +31,7 @@ export default function MoveListPanel({ moves, selectedIndex, onSelect }: MoveLi
     }
 
     return (
-        <Paper elevation={2} sx={{ maxHeight: '80vh', overflowY: 'auto' }}>
+        <Paper elevation={5} sx={{ maxHeight: '80vh', overflowY: 'auto' }}>
             <Typography p={2}>Moves made</Typography>
             <List dense>
                 {moves.map((move, idx) => {

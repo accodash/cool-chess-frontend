@@ -7,6 +7,8 @@ import MoveListPanel from '../components/match/MoveListPanel';
 import { useState, useMemo } from 'react';
 import { applyMoves } from '../utils/simulateBoard';
 import { parseFEN } from '../utils/parseFEN';
+import PageHeader from '../components/misc/PageHeader';
+import MatchCard from '../components/match/MatchCard';
 
 const STARTING_POSITION_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
@@ -36,20 +38,17 @@ export default function MatchHistory() {
     }
 
     return (
-        <Box display="flex" px={4} py={6} gap={4} flexDirection={{ xs: 'column', md: 'row' }}>
-            <Box flexShrink={0} flexGrow={2} display='flex' justifyContent='center'>
-                <ChessBoard
-                    board={currentBoard}
-                    userColor="white"
-                />
-            </Box>
+        <Box px={4} py={6}>
+            <PageHeader title="Match history" />
+            <Box display="flex" gap={4} flexDirection={{ xs: 'column', md: 'row' }} pt={2}>
+                <Box flexShrink={0} flexGrow={2} display="flex" flexDirection="column" alignItems="center" gap={2}>
+                    <MatchCard match={match} isStatic />
+                    <ChessBoard board={currentBoard} userColor="white" />
+                </Box>
 
-            <Box flexGrow={1} maxHeight="600px" overflow="auto">
-                <MoveListPanel
-                    moves={moves}
-                    selectedIndex={selectedIndex}
-                    onSelect={setSelectedIndex}
-                />
+                <Box flexGrow={1}>
+                    <MoveListPanel moves={moves} selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
+                </Box>
             </Box>
         </Box>
     );
