@@ -15,6 +15,7 @@ import SentRequestsTab from './pages/SentRequestsTab';
 import ReceivedRequestsTab from './pages/ReceivedRequestsTab';
 import { useCurrentUser } from './hooks/useCurrentUser';
 import Match from './pages/Match';
+import MatchHistory from './pages/MatchHistory';
 
 function App() {
     const { data: currentUser } = useCurrentUser();
@@ -28,6 +29,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/play" element={<Lobby />} />
                         <Route path="/history" element={<History />} />
+                        <Route path="/history/:id" element={<MatchHistory />} />
                         <Route path="/ranking" element={<Ranking />} />
                         <Route path="/social" element={<Social />}>
                             <Route path="friends" element={<FriendsTab />} />
