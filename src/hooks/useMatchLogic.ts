@@ -2,38 +2,43 @@ import { useQuery } from '@tanstack/react-query';
 import { useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { fetchPossibleMovesForMatch } from '../api/match';
+import { useAuth0 } from '@auth0/auth0-react';
 
-// Trzeba sie pozbyc userId stąd to ma być automatyczne ne BE
-// Ale sockety są zwalone musze zmenić ich init aby działało
 export function useMatchLogic(matchId: string, userId: string, onMoveMade: () => void) {
     const socketRef = useRef<Socket | null>(null);
+    const { getAccessTokenSilently } = useAuth0();
 
-    const enterMatch = () => {
+    const possibleMovesQuery = useQuery({
+        queryKey: ['match', matchId, 'moves'],
+        queryFn: () => fetchPossibleMovesForMatch(matchId),
+        placeholderData: (prevData) => prevData,
+        enabled: !!matchId,
+    });
+
+    const getSocket = async () => {
         if (!socketRef.current) {
-            const socket = io(import.meta.env.VITE_BACKEND_URL);
+            const token = await getAccessTokenSilently();
+            const socket = io(import.meta.env.VITE_BACKEND_URL, {
+                auth: {
+                    token: `Bearer ${token}`,
+                },
+            });
             socketRef.current = socket;
+            socket.emit('enter-match', {
+                matchId,
+                userId,
+            });
         }
+        return socketRef.current;
+    };
 
-        const socket = socketRef.current;
-        socket.emit('enter-match', {
-            matchId,
-            userId,
-        });
-
+    const enterMatch = async () => {
+        const socket = await getSocket();
         socket.on('move-made', onMoveMade);
     };
 
-    const getPossibleMoves = () => {
-        return useQuery({
-            queryKey: ['match', matchId, 'moves'],
-            queryFn: () => fetchPossibleMovesForMatch(matchId),
-            placeholderData: (prevData) => prevData,
-        });
-    };
-
-    const emitMove = (from: string, to: string) => {
-        const socket = socketRef.current;
-        if (!socket) return;
+    const emitMove = async (from: string, to: string) => {
+        const socket = await getSocket();
         socket.emit('make-move', {
             from,
             to,
@@ -42,5 +47,10 @@ export function useMatchLogic(matchId: string, userId: string, onMoveMade: () =>
         });
     };
 
-    return { enterMatch, getPossibleMoves, emitMove };
+    return {
+        enterMatch,
+        emitMove,
+        possibleMoves: possibleMovesQuery.data || {},
+        loadingMoves: possibleMovesQuery.isLoading,
+    };
 }

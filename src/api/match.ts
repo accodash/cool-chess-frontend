@@ -1,4 +1,5 @@
 import { User } from './users';
+import { toSearchParams } from './utils';
 
 export interface Match {
     id: string;
@@ -32,6 +33,24 @@ export interface BoardState {
 }
 
 const API_BASE = import.meta.env.VITE_BACKEND_URL;
+
+export async function fetchMatches(
+    params: {
+        offset: number;
+        limit: number;
+    },
+    token: string
+): Promise<Match[]> {
+    const query = toSearchParams(params);
+
+    const res = await fetch(`${API_BASE}match/list?${query}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    if (!res.ok) throw new Error('Failed to fetch matches');
+    return res.json();
+}
 
 export async function fetchMatch(matchId: string): Promise<Match> {
     const res = await fetch(`${API_BASE}match/${matchId}`);

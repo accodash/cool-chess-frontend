@@ -1,4 +1,4 @@
-import { Typography, Box, Button, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem } from '@mui/material';
 import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
 import PageHeader from '../components/misc/PageHeader';
 import { useCurrentUser } from '../hooks/useCurrentUser';
