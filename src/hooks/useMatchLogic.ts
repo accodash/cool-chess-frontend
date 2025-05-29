@@ -1,10 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { useRef } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { fetchPossibleMovesForMatch } from '../api/match';
 import { useAuth0 } from '@auth0/auth0-react';
 
-export function useMatchLogic(matchId: string, userId: string, onMoveMade: () => void) {
+interface MatchStatus {
+    status: 'win' | 'draw';
+    userId: string;
+}
+export function useMatchLogic(
+    matchId: string,
+    userId: string,
+    onMoveMade: () => void,
+    setResult: Dispatch<SetStateAction<'win' | 'draw' | 'loss' | null>>
+) {
     const socketRef = useRef<Socket | null>(null);
     const { getAccessTokenSilently } = useAuth0();
 
@@ -35,6 +44,13 @@ export function useMatchLogic(matchId: string, userId: string, onMoveMade: () =>
     const enterMatch = async () => {
         const socket = await getSocket();
         socket.on('move-made', onMoveMade);
+        socket.on('status', (payload: MatchStatus) => {
+            if (payload.status === 'win') {
+                setResult(payload.userId === userId ? 'win' : 'loss');
+            } else {
+                setResult('draw');
+            }
+        });
     };
 
     const emitMove = async (from: string, to: string) => {

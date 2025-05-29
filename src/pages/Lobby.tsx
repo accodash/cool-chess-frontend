@@ -1,4 +1,14 @@
-import { Box, Button, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem } from '@mui/material';
+import {
+    Box,
+    Button,
+    FormControl,
+    InputLabel,
+    Select,
+    SelectChangeEvent,
+    MenuItem,
+    Checkbox,
+    FormControlLabel,
+} from '@mui/material';
 import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
 import PageHeader from '../components/misc/PageHeader';
 import { useCurrentUser } from '../hooks/useCurrentUser';
@@ -10,6 +20,7 @@ const gamemodes = [{ gamemode: 'Rapid' }, { gamemode: 'Bullet' }, { gamemode: 'B
 
 export default function Lobby() {
     const { data: currentUser } = useCurrentUser();
+    const [ranked, setRanked] = useState(false);
     let navigate = useNavigate();
     const [gamemode, setGamemode] = useState(gamemodes[0].gamemode);
     const { startMatchmaking } = useMatchmaking((matchData) => {
@@ -23,7 +34,7 @@ export default function Lobby() {
 
     const handleStartGame = () => {
         if (!currentUser?.uuid) return;
-        startMatchmaking(currentUser.uuid, gamemode.toLowerCase());
+        startMatchmaking(currentUser.uuid, gamemode.toLowerCase(), ranked);
     };
 
     if (!currentUser) {
@@ -55,10 +66,13 @@ export default function Lobby() {
                         ))}
                     </Select>
                 </FormControl>
-
                 <Button variant="contained" color="primary" size="large" onClick={handleStartGame}>
                     Start the game
                 </Button>
+                <FormControlLabel
+                    control={<Checkbox onChange={() => setRanked((prev) => !prev)} checked={ranked} />}
+                    label="is ranked"
+                />
             </Box>
         </Box>
     );

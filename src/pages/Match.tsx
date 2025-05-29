@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
 import PageHeader from '../components/misc/PageHeader';
 import { useMatch } from '../hooks/useMatch';
 import { useMatchLogic } from '../hooks/useMatchLogic';
@@ -12,6 +12,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Match() {
     const { id } = useParams();
+    const [result, setResult] = useState<null | 'win' | 'loss' | 'draw'>(null);
     const queryClient = useQueryClient();
     const navigate = useNavigate();
     const { isLoading: auth0Loading } = useAuth0();
@@ -23,7 +24,8 @@ export default function Match() {
         currentUser?.uuid || '',
         () => {
             queryClient.invalidateQueries({ queryKey: ['match', id] });
-        }
+        },
+        setResult
     );
 
     const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
@@ -102,6 +104,24 @@ export default function Match() {
     return (
         <Box px={4} py={6}>
             <PageHeader title={`Match ${id}`} />
+            <Dialog open={result !== null} onClose={() => setResult(null)}>
+                <DialogTitle>Game Over</DialogTitle>
+                <DialogContent>
+                    <Typography>
+                        {result === 'win' && '🎉 You won!'}
+                        {result === 'loss' && '😞 You lost!'}
+                        {result === 'draw' && "🤝 It's a draw!"}
+                    </Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => navigate('/play')} color="primary">
+                        Back to Play
+                    </Button>
+                    <Button onClick={() => setResult(null)} color="secondary">
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
             {board && (
                 <Box mt={4}>
                     <ChessBoard

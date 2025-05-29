@@ -6,7 +6,7 @@ export function useMatchmaking(onMatchFound: (data: any) => void) {
     const socketRef = useRef<Socket | null>(null);
     const { getAccessTokenSilently } = useAuth0();
 
-    const startMatchmaking = async (userId: string, gamemode: string) => {
+    const startMatchmaking = async (userId: string, gamemode: string, isRanked: boolean) => {
         if (!userId) return;
 
         if (socketRef.current) {
@@ -21,7 +21,7 @@ export function useMatchmaking(onMatchFound: (data: any) => void) {
         });
         socketRef.current = socket;
 
-        socket.emit('join-queue', { userId, gamemode });
+        socket.emit('join-queue', { userId, gamemode, isRanked });
 
         socket.on('match-found', onMatchFound);
     };
