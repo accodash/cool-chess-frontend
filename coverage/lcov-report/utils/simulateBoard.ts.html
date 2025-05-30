@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/misc/LoginRequiredNotice.tsx</title>
+    <title>Code coverage report for utils/simulateBoard.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/misc</a> LoginRequiredNotice.tsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> simulateBoard.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">15.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>2/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>2/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -84,62 +84,47 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Box, Typography } from '@mui/material';
-import { EmojiPeople } from '@mui/icons-material';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Move } from '../api/moves';
 &nbsp;
-export default function LoginRequiredNotice() {
-    return (
-        &lt;Box
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            justifyContent='center'
-            minHeight='60vh'
-            textAlign='center'
-            px={3}
-        &gt;
-            &lt;EmojiPeople data-testid="EmojiPeopleIcon" sx={{ fontSize: 64, mb: 2 }} /&gt;
-            &lt;Typography variant='h5' gutterBottom&gt;
-                Hey there!
-            &lt;/Typography&gt;
-            &lt;Typography variant='body1' color='text.secondary'&gt;
-                To see this page, you'll need to log in.
-                &lt;br /&gt;
-                We'd love to have you join us!
-            &lt;/Typography&gt;
-        &lt;/Box&gt;
-    );
+export function <span class="fstat-no" title="function not covered" >cloneBoard(</span>board: (string | null)[][]): (string | null)[][] {
+<span class="cstat-no" title="statement not covered" >    return board.map(<span class="fstat-no" title="function not covered" >(r</span>ow) =&gt; <span class="cstat-no" title="statement not covered" >[...row])</span>;</span>
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >applyMoves(</span>board: (string | null)[][], moves: Move[]): (string | null)[][] {
+    const newBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(board);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (const move of moves) {</span>
+        const fromCol = <span class="cstat-no" title="statement not covered" >move.from.charCodeAt(0) - 'a'.charCodeAt(0);</span>
+        const fromRow = <span class="cstat-no" title="statement not covered" >8 - parseInt(move.from[1], 10);</span>
+        const toCol = <span class="cstat-no" title="statement not covered" >move.to.charCodeAt(0) - 'a'.charCodeAt(0);</span>
+        const toRow = <span class="cstat-no" title="statement not covered" >8 - parseInt(move.to[1], 10);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        newBoard[toRow][toCol] = newBoard[fromRow][fromCol];</span>
+<span class="cstat-no" title="statement not covered" >        newBoard[fromRow][fromCol] = null;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return newBoard;</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -148,16 +133,16 @@ export default function LoginRequiredNotice() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-30T19:29:20.076Z
+                at 2025-05-30T18:15:26.098Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
     </body>
 </html>
     
