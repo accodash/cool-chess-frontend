@@ -70,21 +70,23 @@ export default function EditProfileDialog({ open, onClose, user }: Props) {
     };
 
     return (
-        <Dialog
-            open={open}
-            onClose={onClose}
-            fullWidth
-            maxWidth="xs"
-        >
+        <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
             <DialogTitle>Edit your profile</DialogTitle>
             <DialogContent>
                 <Stack spacing={3} mt={2} alignItems="center">
-                    <Avatar src={avatarPreview ?? undefined} sx={{ width: 100, height: 100 }} />
+                    <Avatar src={avatarPreview ?? undefined} sx={{ width: 100, height: 100 }} alt='avatar' />
 
-                    <Button variant="outlined" startIcon={<UploadFile />} onClick={() => fileInputRef.current?.click()}>
+                    <Button variant="outlined" startIcon={<UploadFile />} onClick={() => fileInputRef.current!!.click()}>
                         Upload Avatar
                     </Button>
-                    <input ref={fileInputRef} type="file" hidden accept="image/*" onChange={handleFileChange} />
+                    <input
+                        ref={fileInputRef}
+                        type="file"
+                        hidden
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        data-testid="hidden-file-input"
+                    />
 
                     <TextField
                         label="Username"

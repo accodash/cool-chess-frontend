@@ -2,7 +2,7 @@ import { Box, Stack, CircularProgress } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import UserCard from '../components/social/UserCard';
 import UserListControls from '../components/social/UserListControls';
-import PaginationControls from '../components/PaginationControls';
+import PaginationControls from '../components/misc/PaginationControls';
 import { useUsers } from '../hooks/useUsers';
 
 const LIMIT = 50;

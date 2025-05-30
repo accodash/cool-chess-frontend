@@ -2,7 +2,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import ModeSelector from '../components/ranking/ModeSelector';
 import RankingList from '../components/ranking/RankingList';
-import PaginationControls from '../components/PaginationControls';
+import PaginationControls from '../components/misc/PaginationControls';
 import PageHeader from '../components/misc/PageHeader';
 import { useRanking } from '../hooks/useRanking';
 

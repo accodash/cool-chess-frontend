@@ -15,7 +15,7 @@ export default function FollowActionButtons({ userId }: Props) {
     const followMutation = useFollowUser();
     const unfollowMutation = useUnfollowUser();
 
-    const isFollowing = followings?.some((relation) => relation.followedUser?.uuid === userId);
+    const isFollowing = followings?.some((relation) => relation.followedUser!!.uuid === userId) ?? false;
 
     const handleFollow = () => {
         followMutation.mutate(userId);
