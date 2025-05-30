@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import NavigationBar from './NavigationBar';
 import { MemoryRouter } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
@@ -10,6 +11,15 @@ jest.mock('@auth0/auth0-react');
 jest.mock('../../hooks/useCurrentUser', () => ({
     useCurrentUser: jest.fn(),
 }));
+
+jest.mock('@mui/material', () => {
+    const originalModule = jest.requireActual('@mui/material');
+    return {
+        __esModule: true,
+        ...originalModule,
+        useMediaQuery: jest.fn(),
+    };
+});
 
 const mockLoginWithRedirect = jest.fn();
 const mockLogout = jest.fn();
@@ -97,6 +107,72 @@ describe('NavigationBar', () => {
 
             renderWithProviders(<NavigationBar />);
             expect(screen.getByTestId('PersonIcon')).toBeInTheDocument();
+        });
+    });
+
+    describe('on mobile', () => {
+        beforeEach(() => {
+            (useMediaQuery as jest.Mock).mockReturnValue(true);
+            (useAuth0 as jest.Mock).mockReturnValue({
+                loginWithRedirect: mockLoginWithRedirect,
+                logout: mockLogout,
+            });
+        });
+
+        afterEach(() => {
+            jest.clearAllMocks();
+        });
+
+        it('renders mobile menu icon', () => {
+            (useCurrentUser as jest.Mock).mockReturnValue({ data: null });
+            renderWithProviders(<NavigationBar />);
+            const menuButton = screen.getByRole('button');
+            expect(menuButton).toBeInTheDocument();
+        });
+
+        it('opens drawer on menu button click', () => {
+            (useCurrentUser as jest.Mock).mockReturnValue({ data: null });
+            renderWithProviders(<NavigationBar />);
+            const menuButton = screen.getByRole('button');
+            fireEvent.click(menuButton);
+            const drawerPaper = document.querySelector('.MuiDrawer-paper') as HTMLElement;
+            expect(drawerPaper).toBeInTheDocument();
+            expect(drawerPaper).toHaveStyle({ transform: 'none' });
+        });
+
+        it('shows user avatar and username when logged in', () => {
+            (useCurrentUser as jest.Mock).mockReturnValue({ data: mockUser });
+            renderWithProviders(<NavigationBar />);
+            const menuButton = screen.getByRole('button');
+            fireEvent.click(menuButton);
+            expect(screen.getByText(mockUser.username)).toBeInTheDocument();
+            expect(screen.getByRole('img')).toHaveAttribute('src', mockUser.imageUrl);
+        });
+
+        it('shows Log In button when not logged in', () => {
+            (useCurrentUser as jest.Mock).mockReturnValue({ data: null });
+            renderWithProviders(<NavigationBar />);
+            fireEvent.click(screen.getByRole('button'));
+            expect(screen.getByRole('button', { name: /log in/i })).toBeInTheDocument();
+        });
+
+        it('closes the drawer when clicking outside', async () => {
+            (useCurrentUser as jest.Mock).mockReturnValue({ data: null });
+            renderWithProviders(<NavigationBar />);
+
+            const menuButton = screen.getByRole('button');
+            fireEvent.click(menuButton);
+
+            const drawerPaper = document.querySelector('.MuiDrawer-paper') as HTMLElement;
+            expect(drawerPaper).toBeInTheDocument();
+            expect(drawerPaper).toHaveStyle({ transform: 'none' });
+
+            const backdrop = document.querySelector('.MuiBackdrop-root');
+            if (backdrop) {
+                fireEvent.click(backdrop);
+            }
+
+            expect(drawerPaper).not.toHaveStyle({ transform: 'none' });
         });
     });
 });

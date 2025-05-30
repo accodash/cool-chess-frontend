@@ -10,10 +10,9 @@ const MODES = [
 
 interface Props {
     ratings: Record<string, number>;
-    showMatchButton: boolean;
 }
 
-export default function RatingsGrid({ ratings, showMatchButton }: Props) {
+export default function RatingsGrid({ ratings }: Props) {
     return (
         <Grid container spacing={2} mt={3}>
             {MODES.map((mode) => (
@@ -21,8 +20,7 @@ export default function RatingsGrid({ ratings, showMatchButton }: Props) {
                     <RatingCard
                         label={mode.label}
                         icon={mode.icon}
-                        rating={ratings[mode.value] ?? 1000}
-                        showMatchButton={showMatchButton}
+                        rating={ratings[mode.value] ?? 400}
                     />
                 </Grid>
             ))}

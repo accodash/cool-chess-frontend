@@ -10,7 +10,7 @@ describe('RatingsGrid', () => {
     };
 
     it('renders all three RatingCards with correct data', () => {
-        render(<RatingsGrid ratings={ratings} showMatchButton={false} />);
+        render(<RatingsGrid ratings={ratings} />);
 
         expect(screen.getByText('Bullet')).toBeInTheDocument();
         expect(screen.getByText('Blitz')).toBeInTheDocument();
@@ -21,27 +21,14 @@ describe('RatingsGrid', () => {
         expect(screen.getByText('1700')).toBeInTheDocument();
     });
 
-    it('falls back to default rating (1000) when missing rating value', () => {
-        render(<RatingsGrid ratings={{}} showMatchButton={false} />);
+    it('falls back to default rating (400) when missing rating value', () => {
+        render(<RatingsGrid ratings={{}} />);
 
         expect(screen.getByText('Bullet')).toBeInTheDocument();
         expect(screen.getByText('Blitz')).toBeInTheDocument();
         expect(screen.getByText('Rapid')).toBeInTheDocument();
 
-        const ratingElements = screen.getAllByText('1000');
+        const ratingElements = screen.getAllByText('400');
         expect(ratingElements.length).toBe(3);
-    });
-
-    it('renders Match button on all cards if showMatchButton is true', () => {
-        render(<RatingsGrid ratings={ratings} showMatchButton={true} />);
-
-        const matchButtons = screen.getAllByRole('button', { name: /match!/i });
-        expect(matchButtons.length).toBe(3);
-    });
-
-    it('does not render Match button if showMatchButton is false', () => {
-        render(<RatingsGrid ratings={ratings} showMatchButton={false} />);
-
-        expect(screen.queryByRole('button', { name: /match!/i })).not.toBeInTheDocument();
     });
 });

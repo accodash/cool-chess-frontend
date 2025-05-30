@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Stack } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import { useMatches } from '../hooks/useMatches';
-import PaginationControls from '../components/PaginationControls';
+import PaginationControls from '../components/misc/PaginationControls';
 import MatchCard from '../components/match/MatchCard';
 import PageHeader from '../components/misc/PageHeader';
 
