@@ -18,11 +18,9 @@
 
 ### 🛠️ Built With
 
-- **NestJS** – Main backend framework used.
-- **PostgreSQL** – SQL-based databased used to store data.
-- **Redis** – For storing data needed in real time. 
-- **Socket.io** – Web sockets that are running during gameplay. 
-- **MinIO** – S3 compatible storage for user avatars. 
+- **ReactJS** – Frontend library used.
+- **Tanstack** – Used for backend API calls.
+- **MaterialUI** – React library that helped a lot with designing stuff.
 
 ### 🚀 Setup Instructions
 
@@ -96,11 +94,9 @@ Tracks user follow relationships:
 
 ### 🛠️ Technologie
 
-- **NestJS** – Główny używany framework backendu.
-- **PostgreSQL** – Relacyjna baza danych wykorzystywana do przechowywania większości wartości.
-- **Redis** – Do przechowywania danych potrzebnych w czasie rzeczywistym. 
-- **Socket.io** – Web sockety, które są potrzebne do działania rozgrywki. 
-- **MinIO** – Przestrzeń pamięciowa kompatybilna z S3, na której zapisywane są avatary. 
+- **ReactJS** – Biblioteka używana do frontendu.
+- **Tanstack** – Wykorzystywany do zapytań API.
+- **MaterialUI** – Bliblioteka Reacta, która ułatwiła budowanie interfejsu.
 
 ### 🚀 Uruchomienie
 
