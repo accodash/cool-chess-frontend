@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import ChessBoard from '../components/match/ChessBoard';
 import { parseFEN } from '../utils/parseFEN';
 import { useAuth0 } from '@auth0/auth0-react';
+import PlayerInfo from '../components/match/PlayerInfo';
 
 export default function Match() {
     const { id } = useParams();
@@ -19,7 +20,7 @@ export default function Match() {
     const { data: currentUser, isLoading: loadingUser } = useCurrentUser();
 
     const { data, isLoading, isError } = useMatch(id || '');
-    const { enterMatch, emitMove, possibleMoves, loadingMoves } = useMatchLogic(
+    const { enterMatch, emitMove, possibleMoves } = useMatchLogic(
         id || '',
         currentUser?.uuid || '',
         () => {
@@ -103,7 +104,7 @@ export default function Match() {
 
     return (
         <Box px={4} py={6}>
-            <PageHeader title={`Match ${id}`} />
+            <PageHeader title="Match" />
             <Dialog open={result !== null} onClose={() => setResult(null)}>
                 <DialogTitle>Game Over</DialogTitle>
                 <DialogContent>
@@ -114,21 +115,31 @@ export default function Match() {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => navigate('/play')} variant='contained'>
+                    <Button onClick={() => navigate('/play')} variant="contained">
                         Back to Play
                     </Button>
-                    <Button onClick={() => setResult(null)} variant='outlined'>
+                    <Button onClick={() => setResult(null)} variant="outlined">
                         Close
                     </Button>
                 </DialogActions>
             </Dialog>
             {board && (
-                <Box mt={4}>
+                <Box mt={4} display="flex" flexDirection="column" alignItems="center" gap={2}>
+                    <PlayerInfo
+                        player={usersColor === 'black' ? data.whitePlayer : data.blackPlayer}
+                        color="white"
+                        timeLeft={1000}
+                    />
                     <ChessBoard
                         board={board}
                         userColor={usersColor}
                         highlightedSquares={highlightedSquares}
                         onSquareClick={handleSquareClick}
+                    />
+                    <PlayerInfo
+                        player={usersColor === 'black' ? data.blackPlayer : data.whitePlayer}
+                        color="black"
+                        timeLeft={1000}
                     />
                 </Box>
             )}

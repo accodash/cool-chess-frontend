@@ -4,18 +4,12 @@ import { Move } from '../../api/moves';
 import { getSquareCoords } from '../../utils/getSquareCoords';
 import { parseFEN } from '../../utils/parseFEN';
 import { applyMoves } from '../../utils/simulateBoard';
+import { formatTime } from '../../utils/formatTime';
 
 interface MoveListPanelProps {
     moves: Move[];
     selectedIndex: number;
     onSelect: (index: number) => void;
-}
-
-function formatTime(ms: number): string {
-    const seconds = Math.floor(ms / 1000);
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
 export default function MoveListPanel({ moves, selectedIndex, onSelect }: MoveListPanelProps) {

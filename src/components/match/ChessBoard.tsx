@@ -39,7 +39,7 @@ export default function ChessBoard({
                                 cursor: onSquareClick ? 'pointer' : 'default',
                             }}
                         >
-                            {image && <img src={image} alt="piece" />}
+                            {image && <img src={image} alt="piece" width='100%' />}
                         </Box>
                     );
                 })
