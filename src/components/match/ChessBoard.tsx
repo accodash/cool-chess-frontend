@@ -57,6 +57,7 @@ export default function ChessBoard({
 
                     return (
                         <Box
+                            data-testid="chess-square"
                             key={`${rowIndex}-${colIndex}`}
                             width={squareSize}
                             height={squareSize}
