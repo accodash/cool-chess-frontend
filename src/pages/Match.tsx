@@ -114,10 +114,10 @@ export default function Match() {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => navigate('/play')} color="primary">
+                    <Button onClick={() => navigate('/play')} variant='contained'>
                         Back to Play
                     </Button>
-                    <Button onClick={() => setResult(null)} color="secondary">
+                    <Button onClick={() => setResult(null)} variant='outlined'>
                         Close
                     </Button>
                 </DialogActions>
