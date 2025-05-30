@@ -1,4 +1,4 @@
-# Cool Chess Backend
+# Cool Chess Frontend
 
 > Select a language: [PL](#polish) / [EN](#english)
 
