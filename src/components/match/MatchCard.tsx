@@ -1,4 +1,4 @@
-import { Paper, Typography, Box, Stack, Chip, Button } from '@mui/material';
+import { Paper, Typography, Box, Stack, Chip, Button, useMediaQuery, useTheme } from '@mui/material';
 import { FlashOn, Speed, RocketLaunch, SentimentVerySatisfied, EmojiEvents } from '@mui/icons-material';
 import { Match } from '../../api/match';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,8 @@ const MODES = [
 
 export default function MatchCard({ match, isStatic = false }: MatchCardProps) {
     const { data: currentUser } = useCurrentUser();
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const result = match.isCompleted
         ? !match.winner
@@ -87,6 +89,8 @@ export default function MatchCard({ match, isStatic = false }: MatchCardProps) {
                 color: 'inherit',
                 display: 'flex',
                 alignItems: 'center',
+                flexDirection: isMobile ? 'column' : 'row',
+                gap: isMobile ? 2 : 1,
             }}
         >
             {cardContent}

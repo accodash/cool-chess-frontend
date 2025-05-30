@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 interface ChessBoardProps {
     board: (string | null)[][];
@@ -7,16 +8,46 @@ interface ChessBoardProps {
     onSquareClick?: (colIndex: number, rowIndex: number, piece: string | null) => void;
 }
 
+function useWindowSize() {
+    const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+    useEffect(() => {
+        const handleResize = () => {
+            setSize({ width: window.innerWidth, height: window.innerHeight });
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return size;
+}
+
 export default function ChessBoard({
     board,
     userColor,
     highlightedSquares = new Set(),
     onSquareClick,
 }: ChessBoardProps) {
+    const { width, height } = useWindowSize();
     const LETTERS = userColor === 'white' ? 'abcdefgh' : 'hgfedcba';
 
+    // Calculate available board space
+    const maxBoardWidth = width - 64; // padding/margin buffer
+    const maxBoardHeight = height * 0.7; // 80vh max
+    const boardSize = Math.min(maxBoardWidth, maxBoardHeight);
+    const squareSize = Math.floor(boardSize / 8);
+
     return (
-        <Box display="grid" gridTemplateColumns="repeat(8, 60px)" gridTemplateRows="repeat(8, 60px)">
+        <Box
+            sx={{
+                width: squareSize * 8,
+                height: squareSize * 8,
+                display: 'grid',
+                gridTemplateColumns: `repeat(8, ${squareSize}px)`,
+                gridTemplateRows: `repeat(8, ${squareSize}px)`,
+                mx: 'auto', // center horizontally
+            }}
+        >
             {board.map((row, rowIndex) =>
                 row.map((image, colIndex) => {
                     const isDark = (rowIndex + colIndex) % 2 === 1;
@@ -28,8 +59,8 @@ export default function ChessBoard({
                     return (
                         <Box
                             key={`${rowIndex}-${colIndex}`}
-                            width={60}
-                            height={60}
+                            width={squareSize}
+                            height={squareSize}
                             display="flex"
                             alignItems="center"
                             justifyContent="center"
@@ -39,7 +70,7 @@ export default function ChessBoard({
                                 cursor: onSquareClick ? 'pointer' : 'default',
                             }}
                         >
-                            {image && <img src={image} alt="piece" width='100%' />}
+                            {image && <img src={image} alt="piece" width="100%" />}
                         </Box>
                     );
                 })

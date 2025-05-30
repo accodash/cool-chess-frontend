@@ -22,7 +22,14 @@ export default function Social() {
             <PageHeader title="Social" />
 
             {currentUser && (
-                <Tabs value={currentTab === -1 ? 0 : currentTab} onChange={handleChange} sx={{ mb: 3 }}>
+                <Tabs
+                    value={currentTab === -1 ? 0 : currentTab}
+                    onChange={handleChange}
+                    sx={{ mb: 3, maxWidth: 'calc(100vw - 64px)' }}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    allowScrollButtonsMobile
+                >
                     <Tab label="Friends" />
                     <Tab label="Sent requests" />
                     <Tab label="Received requests" />
