@@ -1,14 +1,13 @@
-import { Card, CardContent, Typography, Button, Stack } from '@mui/material';
+import { Card, CardContent, Typography, Stack } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface Props {
     label: string;
     icon: ReactNode;
     rating: number;
-    showMatchButton: boolean;
 }
 
-export default function RatingCard({ label, icon, rating, showMatchButton }: Props) {
+export default function RatingCard({ label, icon, rating }: Props) {
     return (
         <Card
             elevation={4}
@@ -27,17 +26,6 @@ export default function RatingCard({ label, icon, rating, showMatchButton }: Pro
                 <Typography variant="h5" fontWeight="medium">
                     {rating}
                 </Typography>
-
-                {showMatchButton && (
-                    <Button
-                        variant="contained"
-                        size="small"
-                        sx={{ mt: 2, borderRadius: 2, textTransform: 'none' }}
-                        fullWidth
-                    >
-                        Match!
-                    </Button>
-                )}
             </CardContent>
         </Card>
     );
