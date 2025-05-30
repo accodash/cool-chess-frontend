@@ -15,6 +15,15 @@ export default function History() {
     const page = parseInt(params.get('page') || '1', 10);
     const offset = (page - 1) * LIMIT;
 
+    if (!currentUser) {
+        return (
+            <Box px={4} py={6}>
+                <PageHeader title="Game History" />
+                <LoginRequiredNotice />
+            </Box>
+        );
+    }
+
     const { data: rawMatches = [], isLoading } = useMatches({
         offset,
         limit: LIMIT + 1,
@@ -30,15 +39,6 @@ export default function History() {
             return newParams;
         });
     };
-
-    if (!currentUser) {
-        return (
-            <Box px={4} py={6}>
-                <PageHeader title="Game History" />
-                <LoginRequiredNotice />
-            </Box>
-        );
-    }
 
     return (
         <Box px={4} py={6}>
