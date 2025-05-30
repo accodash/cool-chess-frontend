@@ -50,7 +50,6 @@ const defaultMatch: Match = {
 
 const renderCard = (props = {}, isMobile = false) => {
     (mui.useMediaQuery as jest.Mock).mockReturnValue(isMobile);
-    (userHook.useCurrentUser as jest.Mock).mockReturnValue({ data: mockUser });
 
     return render(
         <BrowserRouter>
@@ -60,6 +59,10 @@ const renderCard = (props = {}, isMobile = false) => {
 };
 
 describe('MatchCard', () => {
+    beforeEach(() => {
+        (userHook.useCurrentUser as jest.Mock).mockReturnValue({ data: mockUser });
+    });
+
     it('renders match info with result WON', () => {
         renderCard();
 
@@ -92,7 +95,6 @@ describe('MatchCard', () => {
         renderCard({ isCompleted: false });
 
         const button = screen.getByText('Rejoin');
-
 
         const preventDefaultSpy = jest.spyOn(Event.prototype, 'preventDefault');
         const stopPropagationSpy = jest.spyOn(Event.prototype, 'stopPropagation');
@@ -134,5 +136,15 @@ describe('MatchCard', () => {
         renderCard({ isRanked: false });
 
         expect(screen.getByText('Unranked')).toBeInTheDocument();
+    });
+
+    it('renders correctly when currentUser is null', () => {
+        (userHook.useCurrentUser as jest.Mock).mockReturnValue({ data: null });
+
+        renderCard();
+
+        expect(screen.getByText('LOST')).toBeInTheDocument();
+        expect(screen.getByText(/Alice vs Bob/i)).toBeInTheDocument();
+        expect(screen.getByText('Bullet')).toBeInTheDocument();
     });
 });

@@ -62,9 +62,7 @@ describe('MoveListPanel', () => {
     });
 
     it('renders all moves with positions and formatted time', () => {
-        renderWithProviders(
-            <MoveListPanel moves={moves} selectedIndex={-1} onSelect={mockOnSelect} />
-        );
+        renderWithProviders(<MoveListPanel moves={moves} selectedIndex={-1} onSelect={mockOnSelect} />);
 
         expect(screen.getByText('Moves made')).toBeInTheDocument();
         expect(screen.getByText('e2')).toBeInTheDocument();
@@ -76,9 +74,7 @@ describe('MoveListPanel', () => {
     });
 
     it('renders piece image for valid board state', () => {
-        renderWithProviders(
-            <MoveListPanel moves={moves} selectedIndex={0} onSelect={mockOnSelect} />
-        );
+        renderWithProviders(<MoveListPanel moves={moves} selectedIndex={0} onSelect={mockOnSelect} />);
 
         const pieceImgs = screen.getAllByRole('img', { name: /piece/i });
         expect(pieceImgs.length).toBeGreaterThan(0);
@@ -86,9 +82,7 @@ describe('MoveListPanel', () => {
     });
 
     it('calls onSelect with correct index when clicked', () => {
-        renderWithProviders(
-            <MoveListPanel moves={moves} selectedIndex={0} onSelect={mockOnSelect} />
-        );
+        renderWithProviders(<MoveListPanel moves={moves} selectedIndex={0} onSelect={mockOnSelect} />);
 
         const buttons = screen.getAllByRole('button');
         fireEvent.click(buttons[1]);
@@ -96,24 +90,35 @@ describe('MoveListPanel', () => {
     });
 
     it('highlights the selected move', () => {
-        renderWithProviders(
-            <MoveListPanel moves={moves} selectedIndex={1} onSelect={mockOnSelect} />
-        );
+        renderWithProviders(<MoveListPanel moves={moves} selectedIndex={1} onSelect={mockOnSelect} />);
 
         const buttons = screen.getAllByRole('button');
         expect(buttons[1]).toHaveClass('Mui-selected');
     });
 
     it('does not render image if piece is missing on board', () => {
-        const emptyBoard = Array(8).fill(null).map(() => Array(8).fill(null));
+        const emptyBoard = Array(8)
+            .fill(null)
+            .map(() => Array(8).fill(null));
         (parseFENModule.parseFEN as jest.Mock).mockReturnValue(emptyBoard);
         (applyMovesModule.applyMoves as jest.Mock).mockReturnValue(emptyBoard);
 
-        renderWithProviders(
-            <MoveListPanel moves={moves} selectedIndex={0} onSelect={mockOnSelect} />
-        );
+        renderWithProviders(<MoveListPanel moves={moves} selectedIndex={0} onSelect={mockOnSelect} />);
 
         const imgs = screen.queryAllByRole('img', { name: /piece/i });
         expect(imgs.length).toBe(0);
+    });
+
+    it('handles null board state without crashing and does not render piece image', () => {
+        (parseFENModule.parseFEN as jest.Mock).mockReturnValue(null);
+        (applyMovesModule.applyMoves as jest.Mock).mockReturnValue(null);
+
+        renderWithProviders(<MoveListPanel moves={moves} selectedIndex={0} onSelect={mockOnSelect} />);
+
+        const imgs = screen.queryAllByRole('img', { name: /piece/i });
+        expect(imgs.length).toBe(0);
+
+        expect(screen.getByText('e2')).toBeInTheDocument();
+        expect(screen.getByText('e4')).toBeInTheDocument();
     });
 });
