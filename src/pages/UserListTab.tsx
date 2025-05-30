@@ -3,12 +3,11 @@ import { useSearchParams } from 'react-router-dom';
 import UserCard from '../components/social/UserCard';
 import UserListControls from '../components/social/UserListControls';
 import PaginationControls from '../components/PaginationControls';
-import PageHeader from '../components/misc/PageHeader';
 import { useUsers } from '../hooks/useUsers';
 
 const LIMIT = 50;
 
-export default function UserList() {
+export default function UserListTab() {
     const [params, setParams] = useSearchParams();
 
     const page = parseInt(params.get('page') || '1', 10);
@@ -57,9 +56,7 @@ export default function UserList() {
     };
 
     return (
-        <Box px={4} py={6}>
-            <PageHeader title='Game Lobby' sx={{ mb: 2 }} />
-
+        <Box>
             <UserListControls
                 search={search}
                 sortBy={sortBy}
@@ -78,10 +75,11 @@ export default function UserList() {
                         <UserCard
                             key={user.uuid}
                             index={(page - 1) * LIMIT + idx + 1}
+                            uuid={user.uuid}
                             username={user.username}
                             createdAt={user.createdAt}
                             imageUrl={user.imageUrl}
-                            followersCount={user.followersCount}
+                            followersCount={user.followersCount!}
                         />
                     ))}
                 </Stack>

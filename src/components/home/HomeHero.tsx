@@ -1,12 +1,12 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 
-interface HomeHeroProps {
-    loggedIn: boolean;
-    onLogin: () => void;
-}
+export default function HomeHero() {
+    const { loginWithRedirect } = useAuth0();
+    const { data: currentUser } = useCurrentUser();
 
-const HomeHero: React.FC<HomeHeroProps> = ({ loggedIn, onLogin }) => {
     return (
         <Box
             sx={{
@@ -23,7 +23,7 @@ const HomeHero: React.FC<HomeHeroProps> = ({ loggedIn, onLogin }) => {
             <Typography variant='h6' sx={{ mb: 4 }}>
                 Challenge your friends, join ranked matches, or just have fun!
             </Typography>
-            {loggedIn && (
+            {!!currentUser && (
                 <Button
                     variant='contained'
                     color='secondary'
@@ -34,12 +34,12 @@ const HomeHero: React.FC<HomeHeroProps> = ({ loggedIn, onLogin }) => {
                     Start playing
                 </Button>
             )}
-            {!loggedIn && (
+            {!currentUser && (
                 <Button
                     variant='contained'
                     color='secondary'
                     size='large'
-                    onClick={onLogin}
+                    onClick={() => loginWithRedirect()}
                 >
                     Join us
                 </Button>
@@ -47,5 +47,3 @@ const HomeHero: React.FC<HomeHeroProps> = ({ loggedIn, onLogin }) => {
         </Box>
     );
 };
-
-export default HomeHero;

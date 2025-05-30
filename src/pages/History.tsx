@@ -1,20 +1,15 @@
 import { Typography, Box } from '@mui/material';
 import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
 import PageHeader from '../components/misc/PageHeader';
+import { useCurrentUser } from '../hooks/useCurrentUser';
 
-interface HistoryProps {
-    loggedIn: boolean;
-}
+export default function History() {
+    const { data: currentUser } = useCurrentUser();
 
-export default function History({ loggedIn }: HistoryProps) {
     return (
         <Box px={4} py={6}>
-            <PageHeader title='Game History' />
-            {loggedIn ? (
-                <Typography variant='body1'>In development...</Typography>
-            ) : (
-                <LoginRequiredNotice />
-            )}
+            <PageHeader title="Game History" />
+            {!!currentUser ? <Typography variant="body1">In development...</Typography> : <LoginRequiredNotice />}
         </Box>
     );
 }
