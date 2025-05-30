@@ -8,6 +8,7 @@ import {
     MenuItem,
     Checkbox,
     FormControlLabel,
+    Snackbar,
 } from '@mui/material';
 import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
 import PageHeader from '../components/misc/PageHeader';
@@ -23,6 +24,7 @@ export default function Lobby() {
     const [ranked, setRanked] = useState(false);
     let navigate = useNavigate();
     const [gamemode, setGamemode] = useState(gamemodes[0].gamemode);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
     const { startMatchmaking } = useMatchmaking((matchData) => {
         navigate(`/match/${matchData.gameId}`);
     });
@@ -34,6 +36,7 @@ export default function Lobby() {
 
     const handleStartGame = () => {
         if (!currentUser?.uuid) return;
+        setSnackbarOpen(true);
         startMatchmaking(currentUser.uuid, gamemode.toLowerCase(), ranked);
     };
 
@@ -49,7 +52,7 @@ export default function Lobby() {
     return (
         <Box px={4} py={6}>
             <PageHeader title="Game Lobby" />
-            <Box display="flex" flexDirection="column" maxWidth={300} gap={2}>
+            <Box display="flex" flexDirection="column" maxWidth={400} gap={2} pt={2}>
                 <FormControl>
                     <InputLabel id="gamemode-select">Gamemode</InputLabel>
                     <Select
@@ -66,14 +69,19 @@ export default function Lobby() {
                         ))}
                     </Select>
                 </FormControl>
-                <Button variant="contained" color="primary" size="large" onClick={handleStartGame}>
-                    Start the game
-                </Button>
                 <FormControlLabel
                     control={<Checkbox onChange={() => setRanked((prev) => !prev)} checked={ranked} />}
-                    label="is ranked"
+                    label="Ranked?"
                 />
+                <Button variant="contained" color="primary" size="large" onClick={handleStartGame}>
+                    Find a game
+                </Button>
             </Box>
+            <Snackbar
+                open={snackbarOpen}
+                message="Matchmaking is in progress..."
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            />
         </Box>
     );
 }
