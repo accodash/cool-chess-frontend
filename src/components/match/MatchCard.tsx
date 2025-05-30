@@ -1,8 +1,8 @@
 import { Paper, Typography, Box, Stack, Chip, Button } from '@mui/material';
 import { FlashOn, Speed, RocketLaunch, SentimentVerySatisfied, EmojiEvents } from '@mui/icons-material';
 import { Match } from '../../api/match';
-import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 
 interface MatchCardProps {
     match: Match;
@@ -16,12 +16,12 @@ const MODES = [
 ];
 
 export default function MatchCard({ match, isStatic = false }: MatchCardProps) {
-    const { user } = useAuth0();
+    const { data: currentUser } = useCurrentUser();
 
     const result = match.isCompleted
         ? !match.winner
             ? 'DRAW'
-            : match.winner.uuid === user?.sub
+            : match.winner.uuid === currentUser?.uuid
               ? 'WON'
               : 'LOST'
         : 'ONGOING';
