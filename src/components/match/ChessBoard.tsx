@@ -31,9 +31,8 @@ export default function ChessBoard({
     const { width, height } = useWindowSize();
     const LETTERS = userColor === 'white' ? 'abcdefgh' : 'hgfedcba';
 
-    // Calculate available board space
-    const maxBoardWidth = width - 64; // padding/margin buffer
-    const maxBoardHeight = height * 0.7; // 80vh max
+    const maxBoardWidth = width - 64;
+    const maxBoardHeight = height * 0.7;
     const boardSize = Math.min(maxBoardWidth, maxBoardHeight);
     const squareSize = Math.floor(boardSize / 8);
 
@@ -45,7 +44,7 @@ export default function ChessBoard({
                 display: 'grid',
                 gridTemplateColumns: `repeat(8, ${squareSize}px)`,
                 gridTemplateRows: `repeat(8, ${squareSize}px)`,
-                mx: 'auto', // center horizontally
+                mx: 'auto',
             }}
         >
             {board.map((row, rowIndex) =>
