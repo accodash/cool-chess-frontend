@@ -134,7 +134,7 @@ export default function Match() {
                     <PlayerInfo
                         player={usersColor === 'black' ? data.whitePlayer : data.blackPlayer}
                         color="white"
-                        timeLeft={timers[usersColor === 'black' ? data.whitePlayer.uuid : data.blackPlayer.uuid] ?? 0}
+                        timeLeft={(timers[usersColor === 'black' ? data.whitePlayer.uuid : data.blackPlayer.uuid] ?? 0) * 1000}
                     />
                     <ChessBoard
                         board={board}
@@ -145,7 +145,7 @@ export default function Match() {
                     <PlayerInfo
                         player={usersColor === 'black' ? data.blackPlayer : data.whitePlayer}
                         color="black"
-                        timeLeft={timers[usersColor === 'black' ? data.blackPlayer.uuid : data.whitePlayer.uuid] ?? 0}
+                        timeLeft={(timers[usersColor === 'black' ? data.blackPlayer.uuid : data.whitePlayer.uuid] ?? 0) * 1000}
                     />
                 </Box>
             )}
