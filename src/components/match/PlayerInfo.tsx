@@ -18,7 +18,9 @@ export default function PlayerInfo({ player, color, timeLeft }: PlayerInfoProps)
             <Typography variant="h6" flexGrow="1">
                 {player.username}
             </Typography>
-            <Typography variant="h5" pl={4}>{formatTime(timeLeft)}</Typography>
+            <Typography variant="h5" pl={4}>
+                {formatTime(timeLeft * 1000)}
+            </Typography>
             <img src={color === 'black' ? '/kb.png' : '/kw.png'} height={40} />
         </Box>
     );

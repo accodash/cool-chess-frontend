@@ -8,11 +8,20 @@ interface MatchStatus {
     status: 'win' | 'draw';
     userId: string;
 }
+interface TimerStatus {
+    userId: string;
+    timeLeft: number;
+}
 export function useMatchLogic(
     matchId: string,
     userId: string,
     onMoveMade: () => void,
-    setResult: Dispatch<SetStateAction<'win' | 'draw' | 'loss' | null>>
+    setResult: Dispatch<SetStateAction<'win' | 'draw' | 'loss' | null>>,
+    setTimer: Dispatch<
+        React.SetStateAction<{
+            [x: string]: number;
+        }>
+    >
 ) {
     const socketRef = useRef<Socket | null>(null);
     const { getAccessTokenSilently } = useAuth0();
@@ -50,6 +59,12 @@ export function useMatchLogic(
             } else {
                 setResult('draw');
             }
+        });
+        socket.on('time-update', (payload: TimerStatus) => {
+            setTimer((prev) => ({
+                ...prev,
+                [payload.userId]: payload.timeLeft,
+            }));
         });
     };
 

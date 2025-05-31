@@ -13,24 +13,27 @@ import PlayerInfo from '../components/match/PlayerInfo';
 
 export default function Match() {
     const { id } = useParams();
-    const [result, setResult] = useState<null | 'win' | 'loss' | 'draw'>(null);
-    const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const { isLoading: auth0Loading } = useAuth0();
     const { data: currentUser, isLoading: loadingUser } = useCurrentUser();
-
     const { data, isLoading, isError } = useMatch(id || '');
+
+    const [result, setResult] = useState<null | 'win' | 'loss' | 'draw'>(null);
+    const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
+    const [highlightedSquares, setHighlightedSquares] = useState<Set<string>>(new Set());
+
+    const [timers, setTimers] = useState<{ [uuid: string]: number }>({});
+
     const { enterMatch, emitMove, possibleMoves } = useMatchLogic(
         id || '',
         currentUser?.uuid || '',
         () => {
             queryClient.invalidateQueries({ queryKey: ['match', id] });
         },
-        setResult
+        setResult,
+        setTimers
     );
-
-    const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
-    const [highlightedSquares, setHighlightedSquares] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         if (!auth0Loading && !loadingUser && currentUser == null) {
@@ -50,11 +53,16 @@ export default function Match() {
         }
     }, [enterMatch, currentUser, id]);
 
-    // Return early after all hooks are called
-    if (auth0Loading || loadingUser || !currentUser || !id) {
-        return null;
-    }
+    useEffect(() => {
+        if (data?.blackPlayer && data?.whitePlayer && data?.boardState) {
+            setTimers({
+                [data.blackPlayer.uuid]: data.boardState.remainingBlackTime,
+                [data.whitePlayer.uuid]: data.boardState.remainingWhiteTime,
+            });
+        }
+    }, [data]);
 
+    if (auth0Loading || loadingUser || !currentUser || !id) return null;
     if (isLoading) {
         return (
             <Box px={4} py={6}>
@@ -62,7 +70,6 @@ export default function Match() {
             </Box>
         );
     }
-
     if (isError || !data) {
         return (
             <Box px={4} py={6}>
@@ -83,7 +90,6 @@ export default function Match() {
 
         if (highlightedSquares.has(position) && selectedSquare) {
             emitMove(selectedSquare, position);
-            console.log(`tries to move from ${selectedSquare} to ${position}`);
         }
 
         if (!piece) {
@@ -128,7 +134,7 @@ export default function Match() {
                     <PlayerInfo
                         player={usersColor === 'black' ? data.whitePlayer : data.blackPlayer}
                         color="white"
-                        timeLeft={1000}
+                        timeLeft={timers[usersColor === 'black' ? data.whitePlayer.uuid : data.blackPlayer.uuid] ?? 0}
                     />
                     <ChessBoard
                         board={board}
@@ -139,7 +145,7 @@ export default function Match() {
                     <PlayerInfo
                         player={usersColor === 'black' ? data.blackPlayer : data.whitePlayer}
                         color="black"
-                        timeLeft={1000}
+                        timeLeft={timers[usersColor === 'black' ? data.blackPlayer.uuid : data.whitePlayer.uuid] ?? 0}
                     />
                 </Box>
             )}
