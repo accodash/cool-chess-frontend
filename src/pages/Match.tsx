@@ -25,21 +25,17 @@ export default function Match() {
 
     const [timers, setTimers] = useState<{ [uuid: string]: number }>({});
 
+    const invalidateQueries = () => {
+        queryClient.invalidateQueries({ queryKey: ['match', id] });
+    };
+
     const { enterMatch, emitMove, possibleMoves } = useMatchLogic(
         id || '',
         currentUser?.uuid || '',
-        () => {
-            queryClient.invalidateQueries({ queryKey: ['match', id] });
-        },
+        invalidateQueries,
         setResult,
         setTimers
     );
-
-    useEffect(() => {
-        if (!auth0Loading && !loadingUser && currentUser == null) {
-            navigate('/');
-        }
-    }, [auth0Loading, loadingUser, currentUser, navigate]);
 
     useEffect(() => {
         if (!id) {
@@ -48,13 +44,19 @@ export default function Match() {
     }, [id, navigate]);
 
     useEffect(() => {
+        if (!auth0Loading && !loadingUser && currentUser == null) {
+            navigate('/');
+        }
+    }, [auth0Loading, loadingUser, currentUser, navigate]);
+
+    useEffect(() => {
         if (enterMatch && currentUser && id) {
             enterMatch();
         }
     }, [enterMatch, currentUser, id]);
 
     useEffect(() => {
-        if (data?.blackPlayer && data?.whitePlayer && data?.boardState) {
+        if (data?.blackPlayer && data.whitePlayer && data.boardState) {
             setTimers({
                 [data.blackPlayer.uuid]: data.boardState.remainingBlackTime,
                 [data.whitePlayer.uuid]: data.boardState.remainingWhiteTime,
@@ -133,8 +135,10 @@ export default function Match() {
                 <Box mt={4} display="flex" flexDirection="column" alignItems="center" gap={2}>
                     <PlayerInfo
                         player={usersColor === 'black' ? data.whitePlayer : data.blackPlayer}
-                        color="white"
-                        timeLeft={(timers[usersColor === 'black' ? data.whitePlayer.uuid : data.blackPlayer.uuid] ?? 0) * 1000}
+                        color={usersColor === 'black' ? 'white' : 'black'}
+                        timeLeft={
+                            (timers[usersColor === 'black' ? data.whitePlayer.uuid : data.blackPlayer.uuid] ?? 0) * 1000
+                        }
                     />
                     <ChessBoard
                         board={board}
@@ -144,8 +148,10 @@ export default function Match() {
                     />
                     <PlayerInfo
                         player={usersColor === 'black' ? data.blackPlayer : data.whitePlayer}
-                        color="black"
-                        timeLeft={(timers[usersColor === 'black' ? data.blackPlayer.uuid : data.whitePlayer.uuid] ?? 0) * 1000}
+                        color={usersColor}
+                        timeLeft={
+                            (timers[usersColor === 'black' ? data.blackPlayer.uuid : data.whitePlayer.uuid] ?? 0) * 1000
+                        }
                     />
                 </Box>
             )}
