@@ -31,7 +31,7 @@ export default function MoveListPanel({ moves, selectedIndex, onSelect }: MoveLi
                 {moves.map((move, idx) => {
                     const board = boardStates[idx];
                     const [fromRow, fromCol] = getSquareCoords(move.from, userColor);
-                    const piece = board?.[fromRow]?.[fromCol];
+                    const piece = board?.[fromRow]!![fromCol];
 
                     return (
                         <ListItemButton key={move.id} selected={idx === selectedIndex} onClick={() => onSelect(idx)}>

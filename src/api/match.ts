@@ -7,7 +7,7 @@ export interface Match {
     blackPlayer: User;
     startAt: string;
     winner?: User;
-    isCompleted: boolean[];
+    isCompleted: boolean;
     endAt?: string;
     followers?: string[];
     mode: string;

@@ -4,13 +4,25 @@ import { useMatches } from '../hooks/useMatches';
 import PaginationControls from '../components/misc/PaginationControls';
 import MatchCard from '../components/match/MatchCard';
 import PageHeader from '../components/misc/PageHeader';
+import { useCurrentUser } from '../hooks/useCurrentUser';
+import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
 
 const LIMIT = 10;
 
 export default function History() {
+    const { data: currentUser } = useCurrentUser();
     const [params, setParams] = useSearchParams();
     const page = parseInt(params.get('page') || '1', 10);
     const offset = (page - 1) * LIMIT;
+
+    if (!currentUser) {
+        return (
+            <Box px={4} py={6}>
+                <PageHeader title="Game History" />
+                <LoginRequiredNotice />
+            </Box>
+        );
+    }
 
     const { data: rawMatches = [], isLoading } = useMatches({
         offset,
