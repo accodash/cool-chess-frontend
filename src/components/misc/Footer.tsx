@@ -25,6 +25,7 @@ export default function Footer() {
 
         <Stack direction="row" spacing={1}>
           <IconButton
+            aria-label="GitHub"
             component={Link}
             href="https://github.com/accodash/cool-chess-frontend"
             target="_blank"
@@ -34,6 +35,7 @@ export default function Footer() {
             <GitHub />
           </IconButton>
           <IconButton
+            aria-label="Twitter"
             component={Link}
             href="https://twitter.com/"
             target="_blank"
@@ -43,6 +45,7 @@ export default function Footer() {
             <Twitter />
           </IconButton>
           <IconButton
+            aria-label="Instagram"
             component={Link}
             href="https://instagram.com/"
             target="_blank"

@@ -25,6 +25,7 @@ export default function HomeHero() {
             </Typography>
             {!!currentUser && (
                 <Button
+                    aria-label='Start playing'
                     variant='contained'
                     color='secondary'
                     size='large'
@@ -36,6 +37,7 @@ export default function HomeHero() {
             )}
             {!currentUser && (
                 <Button
+                    aria-label='Join us'
                     variant='contained'
                     color='secondary'
                     size='large'
