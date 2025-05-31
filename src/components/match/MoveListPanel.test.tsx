@@ -67,10 +67,10 @@ describe('MoveListPanel', () => {
         expect(screen.getByText('Moves made')).toBeInTheDocument();
         expect(screen.getByText('e2')).toBeInTheDocument();
         expect(screen.getByText('e4')).toBeInTheDocument();
-        expect(screen.getByText('120s')).toBeInTheDocument();
+        expect(screen.getByText('120000s')).toBeInTheDocument();
         expect(screen.getByText('e7')).toBeInTheDocument();
         expect(screen.getByText('e5')).toBeInTheDocument();
-        expect(screen.getByText('115s')).toBeInTheDocument();
+        expect(screen.getByText('115000s')).toBeInTheDocument();
     });
 
     it('renders piece image for valid board state', () => {

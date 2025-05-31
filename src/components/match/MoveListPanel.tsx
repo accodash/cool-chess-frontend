@@ -47,7 +47,7 @@ export default function MoveListPanel({ moves, selectedIndex, onSelect }: MoveLi
                                     {move.to}
                                 </Typography>
                                 <Typography variant="subtitle2" sx={{ marginLeft: 'auto' }}>
-                                    {formatTime(move.timeLeft)}
+                                    {formatTime(move.timeLeft * 1000)}
                                 </Typography>
                             </Stack>
                         </ListItemButton>
