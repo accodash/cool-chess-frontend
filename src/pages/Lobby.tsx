@@ -14,31 +14,13 @@ import LoginRequiredNotice from '../components/misc/LoginRequiredNotice';
 import PageHeader from '../components/misc/PageHeader';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { useState } from 'react';
-import { useMatchmaking } from '../hooks/useMatchmaking'; // Import hook
+import { useMatchmaking } from '../hooks/useMatchmaking';
 import { useNavigate } from 'react-router-dom';
 
 const gamemodes = [{ gamemode: 'Rapid' }, { gamemode: 'Bullet' }, { gamemode: 'Blitz' }];
 
 export default function Lobby() {
     const { data: currentUser } = useCurrentUser();
-    const [ranked, setRanked] = useState(false);
-    let navigate = useNavigate();
-    const [gamemode, setGamemode] = useState(gamemodes[0].gamemode);
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
-    const { startMatchmaking } = useMatchmaking((matchData) => {
-        navigate(`/match/${matchData.gameId}`);
-    });
-
-    console.log(currentUser);
-    const handleGamemodeSelect = (event: SelectChangeEvent) => {
-        setGamemode(event.target.value as string);
-    };
-
-    const handleStartGame = () => {
-        if (!currentUser?.uuid) return;
-        setSnackbarOpen(true);
-        startMatchmaking(currentUser.uuid, gamemode.toLowerCase(), ranked);
-    };
 
     if (!currentUser) {
         return (
@@ -48,6 +30,24 @@ export default function Lobby() {
             </Box>
         );
     }
+
+    const [ranked, setRanked] = useState(false);
+    let navigate = useNavigate();
+    const [gamemode, setGamemode] = useState(gamemodes[0].gamemode);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const { startMatchmaking } = useMatchmaking((matchData) => {
+        navigate(`/match/${matchData.gameId}`);
+    });
+
+    const handleGamemodeSelect = (event: SelectChangeEvent) => {
+        setGamemode(event.target.value as string);
+    };
+
+    const handleStartGame = () => {
+        if (!currentUser.uuid) return;
+        setSnackbarOpen(true);
+        startMatchmaking(currentUser.uuid, gamemode.toLowerCase(), ranked);
+    };
 
     return (
         <Box px={4} py={6}>
